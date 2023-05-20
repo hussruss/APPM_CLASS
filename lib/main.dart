@@ -26,6 +26,200 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
+class LayoutBuilderE2 extends StatelessWidget {
+  const LayoutBuilderE2({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    double size = MediaQuery.of(context).size.width;
+
+    return Scaffold(
+      body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ContainerWidget(
+                size: size,
+                color: Colors.red,
+                text: "MediaQuery ${size.toString()}")
+          ],
+        ),
+        Container(
+          width: size / 2,
+          height: 400,
+          color: Colors.blue,
+          child: LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) {
+              return Center(
+                child: ContainerWidget(
+                    size: constraints.maxWidth / 2,
+                    color: Colors.orange,
+                    text:
+                        "size: ${size / 2} constraints: ${constraints.maxWidth.toString()}"),
+              );
+            },
+          ),
+        ),
+      ]),
+    );
+  }
+}
+
+class MediaQuery1 extends StatelessWidget {
+  const MediaQuery1({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    double size = MediaQuery.of(context).size.width;
+    bool isMobile(BuildContext context) =>
+        MediaQuery.of(context).size.width < 650;
+    bool isTab(BuildContext context) =>
+        MediaQuery.of(context).size.width < 1300 &&
+        MediaQuery.of(context).size.width >= 650;
+    bool isDesktop(BuildContext context) =>
+        MediaQuery.of(context).size.width >= 1300;
+
+    return Scaffold(
+      body: Row(
+        children: [
+          isMobile(context)
+              ? ContainerWidget(
+                  size: size / 2, color: Colors.orange, text: 'Mobile')
+              : Container(),
+          ContainerWidget(
+              size: size / 2, color: Colors.green, text: 'Multiplatform'),
+          isTab(context)
+              ? ContainerWidget(size: size / 2, color: Colors.red, text: 'Tab')
+              : Container(),
+        ],
+      ),
+    );
+  }
+}
+
+class FlexibleE extends StatelessWidget {
+  const FlexibleE({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: const [
+          Flexible(
+              flex: 1,
+              fit: FlexFit.tight,
+              child: ContainerWidget(size: 50, color: Colors.blue, text: '50')),
+          ContainerWidget(size: 50, color: Colors.red, text: '50'),
+          ContainerWidget(size: 50, color: Colors.green, text: '50'),
+          Expanded(
+              flex: 2,
+              child:
+                  ContainerWidget(size: 50, color: Colors.purple, text: '50'))
+        ],
+      ),
+    );
+  }
+}
+
+//LayoutBuilder
+// Es una clase este widget de tipo StatelessWidget, que se describira más adelante
+class LayoutBuilderE extends StatelessWidget {
+//Constructor de la clase
+  const LayoutBuilderE({Key? key}) : super(key: key);
+
+//Método encargado de colocar todos los widgets para que pueda aparecer en nuestra vista
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // Se utiliza el widget Scaffold para dar la estructura a nuestra aplicación
+      appBar: AppBar(
+          title: const Text(
+              'LayoutBuilder Example')), // Se declara el widget AppBar que representa la barra superior de la aplicación
+      body: LayoutBuilder(
+        // Uso del widget LayoutBuilder para que se adapte su contenido a la densidad del dispositivo
+        builder: (BuildContext context, BoxConstraints constraints) {
+          if (constraints.maxWidth > 600) {
+            // Si es mayor a los 600px entonces mostrar esta vista o Widget
+            return _buildWideContainers();
+          } else {
+            // En caso contrario
+            return _buildNormalContainer();
+          }
+        },
+      ),
+    );
+  }
+
+  Widget _buildNormalContainer() {
+    return Center(
+      // Widget de tipo center para cetrar todos los widget que esten dentro de el
+      child: Container(
+        // Se declara un contenedor y se le asignan algunas propiedades
+        height: 100.0,
+        width: 100.0,
+        color: Colors.red,
+      ),
+    );
+  }
+
+  Widget _buildWideContainers() {
+    return Center(
+      // Widget de tipo center para cetrar todos los widget que esten dentro de el
+      child: Row(
+        // Se le añade una Row que va a representar como si fuera columna
+        mainAxisAlignment:
+            MainAxisAlignment.spaceEvenly, // Un espacido entre ellos
+        children: <Widget>[
+          //Propiedad children para añadir más widgets
+          Container(
+            // Se declara un contenedor y se le asignan algunas propiedades
+            height: 100.0,
+            width: 100.0,
+            color: Colors.red,
+          ),
+          Container(
+            // Se declara un contenedor y se le asignan algunas propiedades
+            height: 100.0,
+            width: 100.0,
+            color: Colors.yellow,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+//MediaQuery
+
+class MediaQueryE extends StatefulWidget {
+  const MediaQueryE({super.key});
+
+  @override
+  State<MediaQueryE> createState() => _MediaQueryEState();
+}
+
+class _MediaQueryEState extends State<MediaQueryE> {
+  bool isMobile(BuildContext context) =>
+      MediaQuery.of(context).size.width < 650;
+  bool isTab(BuildContext context) =>
+      MediaQuery.of(context).size.width < 1300 &&
+      MediaQuery.of(context).size.width >= 650;
+  bool isDesktop(BuildContext context) =>
+      MediaQuery.of(context).size.width >= 1300;
+
+  @override
+  Widget build(BuildContext context) {
+    //Ejemplo de aplicación
+    double sizeFont = 0;
+    if (isTab(context) || isDesktop(context)) {
+      sizeFont = 22.0;
+    } else if (isMobile(context)) {
+      sizeFont = 16.0;
+    }
+    return Container();
+  }
+}
+
 class Flexible1 extends StatelessWidget {
   const Flexible1({super.key});
 
