@@ -1,668 +1,365 @@
-import 'dart:math';
-
-import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-
 import 'package:flutter/material.dart';
 
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Material App',
-      home: Flexible1(),
+      home: RefreshIndicatorScreen(),
     );
   }
 }
 
-class LayoutBuilderE2 extends StatelessWidget {
-  const LayoutBuilderE2({super.key});
+class ListViewBasic extends StatelessWidget {
+  ScrollController _controller = ScrollController();
+  List<int> lst = List.generate(100, (index) => index);
 
   @override
-  Widget build(BuildContext context) {
-    double size = MediaQuery.of(context).size.width;
-
-    return Scaffold(
-      body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ContainerWidget(
-                size: size,
-                color: Colors.red,
-                text: "MediaQuery ${size.toString()}")
-          ],
-        ),
-        Container(
-          width: size / 2,
-          height: 400,
-          color: Colors.blue,
-          child: LayoutBuilder(
-            builder: (BuildContext context, BoxConstraints constraints) {
-              return Center(
-                child: ContainerWidget(
-                    size: constraints.maxWidth / 2,
-                    color: Colors.orange,
-                    text:
-                        "size: ${size / 2} constraints: ${constraints.maxWidth.toString()}"),
-              );
-            },
-          ),
-        ),
-      ]),
-    );
-  }
-}
-
-class MediaQuery1 extends StatelessWidget {
-  const MediaQuery1({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    double size = MediaQuery.of(context).size.width;
-    bool isMobile(BuildContext context) =>
-        MediaQuery.of(context).size.width < 650;
-    bool isTab(BuildContext context) =>
-        MediaQuery.of(context).size.width < 1300 &&
-        MediaQuery.of(context).size.width >= 650;
-    bool isDesktop(BuildContext context) =>
-        MediaQuery.of(context).size.width >= 1300;
-
-    return Scaffold(
-      body: Row(
-        children: [
-          isMobile(context)
-              ? ContainerWidget(
-                  size: size / 2, color: Colors.orange, text: 'Mobile')
-              : Container(),
-          ContainerWidget(
-              size: size / 2, color: Colors.green, text: 'Multiplatform'),
-          isTab(context)
-              ? ContainerWidget(size: size / 2, color: Colors.red, text: 'Tab')
-              : Container(),
-        ],
-      ),
-    );
-  }
-}
-
-class FlexibleE extends StatelessWidget {
-  const FlexibleE({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: const [
-          Flexible(
-              flex: 1,
-              fit: FlexFit.tight,
-              child: ContainerWidget(size: 50, color: Colors.blue, text: '50')),
-          ContainerWidget(size: 50, color: Colors.red, text: '50'),
-          ContainerWidget(size: 50, color: Colors.green, text: '50'),
-          Expanded(
-              flex: 2,
-              child:
-                  ContainerWidget(size: 50, color: Colors.purple, text: '50'))
-        ],
-      ),
-    );
-  }
-}
-
-//LayoutBuilder
-// Es una clase este widget de tipo StatelessWidget, que se describira más adelante
-class LayoutBuilderE extends StatelessWidget {
-//Constructor de la clase
-  const LayoutBuilderE({Key? key}) : super(key: key);
-
-//Método encargado de colocar todos los widgets para que pueda aparecer en nuestra vista
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      // Se utiliza el widget Scaffold para dar la estructura a nuestra aplicación
-      appBar: AppBar(
-          title: const Text(
-              'LayoutBuilder Example')), // Se declara el widget AppBar que representa la barra superior de la aplicación
-      body: LayoutBuilder(
-        // Uso del widget LayoutBuilder para que se adapte su contenido a la densidad del dispositivo
-        builder: (BuildContext context, BoxConstraints constraints) {
-          if (constraints.maxWidth > 600) {
-            // Si es mayor a los 600px entonces mostrar esta vista o Widget
-            return _buildWideContainers();
-          } else {
-            // En caso contrario
-            return _buildNormalContainer();
-          }
-        },
-      ),
-    );
-  }
-
-  Widget _buildNormalContainer() {
-    return Center(
-      // Widget de tipo center para cetrar todos los widget que esten dentro de el
-      child: Container(
-        // Se declara un contenedor y se le asignan algunas propiedades
-        height: 100.0,
-        width: 100.0,
-        color: Colors.red,
-      ),
-    );
-  }
-
-  Widget _buildWideContainers() {
-    return Center(
-      // Widget de tipo center para cetrar todos los widget que esten dentro de el
-      child: Row(
-        // Se le añade una Row que va a representar como si fuera columna
-        mainAxisAlignment:
-            MainAxisAlignment.spaceEvenly, // Un espacido entre ellos
-        children: <Widget>[
-          //Propiedad children para añadir más widgets
-          Container(
-            // Se declara un contenedor y se le asignan algunas propiedades
-            height: 100.0,
-            width: 100.0,
-            color: Colors.red,
-          ),
-          Container(
-            // Se declara un contenedor y se le asignan algunas propiedades
-            height: 100.0,
-            width: 100.0,
-            color: Colors.yellow,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-//MediaQuery
-
-class MediaQueryE extends StatefulWidget {
-  const MediaQueryE({super.key});
-
-  @override
-  State<MediaQueryE> createState() => _MediaQueryEState();
-}
-
-class _MediaQueryEState extends State<MediaQueryE> {
-  bool isMobile(BuildContext context) =>
-      MediaQuery.of(context).size.width < 650;
-  bool isTab(BuildContext context) =>
-      MediaQuery.of(context).size.width < 1300 &&
-      MediaQuery.of(context).size.width >= 650;
-  bool isDesktop(BuildContext context) =>
-      MediaQuery.of(context).size.width >= 1300;
-
-  @override
-  Widget build(BuildContext context) {
-    //Ejemplo de aplicación
-    double sizeFont = 0;
-    if (isTab(context) || isDesktop(context)) {
-      sizeFont = 22.0;
-    } else if (isMobile(context)) {
-      sizeFont = 16.0;
-    }
-    return Container();
-  }
-}
-
-class Flexible1 extends StatelessWidget {
-  const Flexible1({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(children: const [
-        ContainerWidget(size: 200, color: Colors.red, text: '200'),
-        Flexible(
-            flex: 1,
-            fit: FlexFit.tight,
-            child: ContainerWidget(
-                size: 150, color: Colors.blue, text: 'Flexible')),
-        Flexible(
-            flex: 2,
-            fit: FlexFit.tight,
-            child: ContainerWidget(
-                size: 100, color: Colors.purple, text: 'Flexible')),
-        Flexible(
-            flex: 1,
-            fit: FlexFit.tight,
-            child: ContainerWidget(
-                size: 100, color: Colors.orange, text: 'Flexible')),
-        Expanded(
-            flex: 2,
-            child: ContainerWidget(
-                size: 100, color: Colors.black, text: 'Expanded'))
-      ]),
-    );
-  }
-}
-
-class GestureDetectorStack extends StatefulWidget {
-  const GestureDetectorStack({super.key});
-
-  @override
-  State<GestureDetectorStack> createState() => _GestureDetectorStackState();
-}
-
-class _GestureDetectorStackState extends State<GestureDetectorStack> {
-  @override
-  String _gesture = 'Hello world';
-  double _top = 0;
-  double _left = 0;
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Material App Bar'),
       ),
-      body: Stack(
-        alignment: AlignmentDirectional.center,
-        fit: StackFit.expand,
-        clipBehavior: Clip.hardEdge,
-        children: [
-          // Positioned(
-          //   top: _top,
-          //   left: _left,
-          //   width: 200,
-          //   height: 200,
-          //   child: ContainerWidget(
-          //       size: double.infinity,
-          //       color: Color.fromARGB(255, 168, 13, 2),
-          //       text: 'Red'),
-          // ),
-          Positioned(
-            top: 300,
-            left: 100,
-            width: 200,
-            height: 200,
-            child: GestureDetector(
-                onTap: () {
-                  _gesture = 'onTap';
-                  setState(() {});
-                },
-                onDoubleTap: () {
-                  _gesture = 'onDoubleTap';
-                  setState(() {});
-                },
-                onLongPress: () {
-                  _gesture = 'onLongPress';
-                  setState(() {});
-                },
-                // onHorizontalDragStart: (details) {
-                //   _gesture = 'onHorizontalDragStart ${details.localPosition.dx}';
-                //   setState(() {});
-                // },
-                // onVerticalDragStart: (details) {
-                //   _gesture = 'onVerticalDragStart ${details.localPosition.dy}';
-                //   setState(() {});
-                // },
-                onPanUpdate: (details) {
-                  _gesture = 'onPanUpdate ${details.delta.dy}';
-                  _top = _top + details.delta.dy;
-                  _left = _left + details.delta.dx;
-
-                  setState(() {});
-                },
-                child: ContainerWidget(
-                    size: 200, color: Colors.green, text: _gesture)),
+      body: ListView(
+          scrollDirection: Axis.vertical,
+          reverse: false,
+          controller: _controller,
+          physics: AlwaysScrollableScrollPhysics(),
+          shrinkWrap: false,
+          clipBehavior: Clip.hardEdge,
+          children: lst
+              .map((e) => _buildContainer(
+                  e.toString(), Colors.primaries[e % Colors.primaries.length]))
+              .toList()
+          // [
+          //   _buildContainer('Uno', Colors.blue),
+          //   _buildContainer('Dos', Colors.green),
+          //   _buildContainer('Tres', Colors.red),
+          //   _buildContainer('Cuatro', Colors.orange),
+          //   _buildContainer('Cinco', Colors.yellow),
+          //   _buildContainer('Seis', Colors.blue),
+          //   _buildContainer('Siete', Colors.purple),
+          // ],
           ),
-          Positioned(
-              top: _top,
-              left: _left,
-              child:
-                  ContainerWidget(size: 50, color: Colors.blue, text: 'Blue')),
-        ],
+      floatingActionButton: IconButton(
+        icon: Icon(Icons.plus_one),
+        color: Colors.blue,
+        onPressed: () {
+          _controller.jumpTo(820);
+        },
       ),
     );
   }
 }
 
-class ContainerWidget extends StatelessWidget {
-  final double size;
-  final Color color;
-  final String text;
+class ListViewBuilderE extends StatelessWidget {
+  ScrollController _controller = ScrollController();
+  List<int> lst = List.generate(100, (index) => index);
 
-  const ContainerWidget({
-    super.key,
-    required this.size,
-    required this.color,
-    required this.text,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: size,
-      color: color,
-      child: Center(
-        child: Text(
-          text,
-          style: TextStyle(color: Colors.white, fontSize: 30),
-        ),
-      ),
-    );
-  }
-}
-
-class WidgetStack2 extends StatelessWidget {
-  const WidgetStack2({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    bool isOrientacion =
-        MediaQuery.of(context).orientation == Orientation.portrait;
-
-    return Material(
-      child: Stack(
-        children: <Widget>[
-          Container(
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    colorFilter: ColorFilter.mode(
-                        Colors.black.withOpacity(0.3), BlendMode.overlay),
-                    image: const AssetImage('assets/images/bg.jpg'),
-                    fit: BoxFit.cover)),
-          ),
-          Center(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 50),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset('assets/images/login.png',
-                            width: 180, height: 180),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Text(
-                          'Bienvenido',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 40.0,
-                            fontWeight: FontWeight.w900,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextField(),
-                  textFieldCustom('Usuario', isOrientacion),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  textFieldCustom('Contraseña', isOrientacion),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                        left: (isOrientacion == true) ? 20 : 150,
-                        right: (isOrientacion == true) ? 20 : 150),
-                    child: SizedBox(
-                        width: double.infinity, // <-- Your width
-                        height: 70, // <-- Your height
-                        child: ElevatedButton(
-                          child: const Text('Ingresar',
-                              style: TextStyle(fontSize: 20.0)),
-                          onPressed: () {},
-                        )),
-                  ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                ],
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget textFieldCustom(String hintext, bool isOrientacion) {
-    return Container(
-      height: 70,
-      width: double.infinity,
-      padding: EdgeInsets.only(
-          left: (isOrientacion == true) ? 20 : 150,
-          right: (isOrientacion == true) ? 20 : 150),
-      child: TextField(
-        textAlign: TextAlign.center,
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: Colors.white,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(5),
-          ),
-          hintText: hintext,
-        ),
-      ),
-    );
-  }
-}
-
-class WidgetStack3 extends StatelessWidget {
-  const WidgetStack3({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        CachedNetworkImage(
-          imageUrl:
-              'https://www.blogdelfotografo.com/wp-content/uploads/2020/04/fotografo-paisajes.jpg',
-          imageBuilder: (context, imageProvider) => Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: imageProvider,
-                  fit: BoxFit.cover,
-                  colorFilter: ColorFilter.mode(
-                      Colors.black.withOpacity(0.5), BlendMode.darken)),
-            ),
-          ),
-          placeholder: (context, url) =>
-              const Center(child: CircularProgressIndicator()),
-          errorWidget: (context, url, error) => const Icon(Icons.error),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 50.0),
-          child: Container(
-            alignment: Alignment.bottomCenter,
-            child: const Text(
-              'Google',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 30.0,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-          ),
-        ),
-        Align(
-          alignment: Alignment.center,
-          child: Stack(
-            children: [
-              Card(
-                margin: const EdgeInsets.only(
-                  top: 80.0,
-                  left: 30.0,
-                  right: 30.0,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                child: SizedBox(
-                  width: 300,
-                  height: 300,
-                  child: Column(
-                    children: const [
-                      SizedBox(
-                        height: 60.0,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text('Sergey Brin'),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                            'Es un empresario e informático teórico estadounidense de origen ruso que junto a Larry Page, fundó Google'),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text('Biografía'),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const Positioned(
-                  left: 108.0,
-                  top: -0.0,
-                  child: CircleAvatar(
-                    radius: 70,
-                    backgroundImage: NetworkImage(
-                        'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Sergey_Brin_Ted_2010.jpg/270px-Sergey_Brin_Ted_2010.jpg'),
-                  )),
-            ],
-          ),
-        )
-      ],
-    );
-  }
-}
-
-// Es una clase este widget de tipo StatefulWidget, que se describira más adelante
-class GestureExample1 extends StatefulWidget {
-  //Constructor de la clase
-  const GestureExample1({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  State<GestureExample1> createState() => _GestureExample1State();
-}
-
-// La clase donde se va a implementar el State o estado del widget
-class _GestureExample1State extends State<GestureExample1> {
-  int _counter = 0;
-
-  // Método o función para incrementar el contador
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  // Método o función para decrementar el contador
-  void _decrementCounter() {
-    setState(() {
-      _counter--;
-    });
-  }
-
-  // variable de tipo String que trae su valor una url
-  String urlImage = 'assets/images/ls1.jpeg';
-
-  //Método encargado de colocar todos los widgets para que pueda aparecer en nuestra vista
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Se utiliza el widget Scaffold para dar la estructura a nuestra aplicación
       appBar: AppBar(
-        // Se declara el widget AppBar que representa la barra superior de la aplicación
-        title: Text(widget.title), // Widget de tipo Text
+        title: const Text('Material App Bar'),
       ),
-      body: Center(
-        // Widget para centrar el contenido de los widgets
-        child: Column(
-          // Widget column para añadir elementos visuales o widgets de manera en fila
-          mainAxisAlignment: MainAxisAlignment
-              .center, // Alineamiento de los widgets en el centro
-          children: <Widget>[
-            //Propiedad children para añadir más widgets
-            const Text(
-              // Widget de tipo Text
-              'You have pushed the button this many times:',
-            ),
-            GestureDetector(
-              // El uso del widget no visible pero si funcional GestureDetector
-              onTap:
-                  _incrementCounter, // Cuando se le de tap o clic en el objeto que lo referencie
-              onDoubleTap:
-                  _decrementCounter, // Cuando se le de  doble tap o clic en el objeto que lo referencie
-              onHorizontalDragUpdate: (details) {
-                // Cuando uno se desplace hacia al lado izquiero o derecho con el dedo  en el elemento que lo relaciona
-                if (details.delta.dx > 0) {
-                  print("right");
-                  _incrementCounter();
-                } else {
-                  print("left");
-                  _decrementCounter();
-                }
-              },
-              child: Text(
-                // Widget de tipo Text que esta unido con el GestureDetector
-                '$_counter',
-                style: Theme.of(context).textTheme.displayLarge,
-              ),
-            ),
-            GestureDetector(
-
-                // El uso del widget no visible pero si funcional GestureDetector
-                onVerticalDragUpdate: (details) {
-                  // Cuando detecte que la imagen se le aplica un gesto de manera vertical
-                  if (details.delta.dy > 0) {
-                    print("down");
-                    setState(() {
-                      urlImage = 'assets/images/ls2.jpg';
-                    });
-                  } else {
-                    print("up");
-                    setState(() {
-                      urlImage = 'assets/images/ls3.jpg';
-                    });
-                  }
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(urlImage),
-                ))
-          ],
-        ),
+      body: ListView.builder(
+        scrollDirection: Axis.vertical,
+        reverse: false,
+        controller: _controller,
+        //itemCount: 100,
+        itemBuilder: ((context, index) {
+          return _buildContainer(index.toString(),
+              Colors.primaries[index % Colors.primaries.length]);
+        }),
       ),
-      floatingActionButton: FloatingActionButton(
-        // Widget floatingActionButton
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      floatingActionButton: IconButton(
+        icon: Icon(Icons.plus_one),
+        color: Colors.blue,
+        onPressed: () {
+          _controller.animateTo(
+            2000,
+            curve: Curves.bounceInOut,
+            duration: Duration(seconds: 2),
+          );
+        },
       ),
     );
   }
 }
+
+class ListViewBuilderSeparatedE extends StatelessWidget {
+  ScrollController _controller = ScrollController();
+  List<int> lst = List.generate(100, (index) => index);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Material App Bar'),
+      ),
+      body: ListView.separated(
+        scrollDirection: Axis.vertical,
+        reverse: false,
+        controller: _controller,
+        itemCount: 100,
+        itemBuilder: ((context, index) {
+          return _buildContainer(index.toString(),
+              Colors.primaries[index % Colors.primaries.length]);
+        }),
+        separatorBuilder: (BuildContext context, int index) {
+          return Divider(
+            height: 25,
+            thickness: 5,
+            color: Colors.blue,
+            indent: 20,
+            endIndent: 20,
+          );
+        },
+      ),
+      floatingActionButton: IconButton(
+        icon: Icon(Icons.plus_one),
+        color: Colors.blue,
+        onPressed: () {
+          _controller.animateTo(
+            2000,
+            curve: Curves.bounceInOut,
+            duration: Duration(seconds: 2),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class ListViewBuilderContactE extends StatelessWidget {
+  ScrollController _controller = ScrollController();
+  List<int> lst = List.generate(100, (index) => index);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Contact'),
+      ),
+      body: ListView.builder(
+        scrollDirection: Axis.vertical,
+        reverse: false,
+        controller: _controller,
+        itemCount: contacts.length,
+        itemBuilder: ((context, index) {
+          print(contacts[index].name);
+          return ListTile(
+              leading: CircleAvatar(
+                backgroundColor: Colors.blue,
+                child: Text(contacts[index].name.substring(0, 1)),
+              ),
+              trailing: Icon(Icons.phone),
+              title: Text(contacts[index].name),
+              subtitle: Text(contacts[index].number.toString()),
+              style: ListTileStyle.list);
+        }),
+      ),
+      floatingActionButton: IconButton(
+        icon: Icon(Icons.plus_one),
+        color: Colors.blue,
+        onPressed: () {
+          _controller.animateTo(
+            2000,
+            curve: Curves.bounceInOut,
+            duration: Duration(seconds: 2),
+          );
+        },
+      ),
+    );
+  }
+}
+
+Container _buildContainer(String title, Color color) {
+  print('Render $title');
+  return Container(
+    height: 200,
+    width: 100,
+    color: color,
+    child: Center(
+      child: Text(
+        title,
+        style: TextStyle(fontSize: 40, color: Colors.white),
+      ),
+    ),
+  );
+}
+
+Card _buildItem(Item item, Color color) {
+  print('Render $item');
+  return Card(
+    elevation: 3,
+    child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            color: color,
+            height: 10,
+          ),
+          Image.network(
+            item.imgUrl,
+            height: 100,
+            fit: BoxFit.contain,
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Text(
+            item.name,
+            style: TextStyle(
+                fontSize: 14,
+                color: Colors.black,
+                overflow: TextOverflow.ellipsis),
+          ),
+          Text(
+            '\$ ${item.price}',
+            textAlign: TextAlign.justify,
+            style: TextStyle(fontSize: 20, color: Colors.black),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+List generos = ['Rock', 'Pop', 'Rap', 'Reggeaton', 'Corridos Tumbados'];
+
+final degradosTitulo = <String>["A", "B", "C", "D", "E"];
+final colorsDegrado = <int>[600, 300, 100, 50, 10];
+
+//Referes Indicator
+class RefreshIndicatorScreen extends StatelessWidget {
+  const RefreshIndicatorScreen({Key? key}) : super(key: key);
+
+  Future<void> onRefresh() async {
+    // Impresión en consola del IDE
+    debugPrint("Inicia función onRefresh");
+    await Future.delayed(const Duration(seconds: 5));
+    debugPrint("Espera del hilo de ejecución");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(title: const Text("Refresh Indicator")),
+        body: RefreshIndicator(
+            color: Colors.green,
+            displacement: 120,
+            onRefresh: onRefresh,
+            child: ListView.builder(
+              padding: const EdgeInsets.all(30),
+              itemCount: degradosTitulo.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  height: 50,
+                  color: Colors.blue[colorsDegrado[index]],
+                  child:
+                      Center(child: Text('Degrado ${degradosTitulo[index]}')),
+                );
+              },
+            )));
+  }
+}
+
+class Contact {
+  final String name;
+  final int number;
+
+  Contact({required String this.name, required this.number});
+}
+
+List<Contact> contacts = <Contact>[
+  Contact(name: 'Xavier', number: 55555555),
+  Contact(name: 'Alberto', number: 11223344),
+  Contact(name: 'Andres', number: 88995511),
+  Contact(name: 'Jorge', number: 33557788),
+  Contact(name: 'José', number: 55228899),
+  Contact(name: 'Juan Pablo', number: 33665544),
+  Contact(name: 'Juan', number: 11884466),
+  Contact(name: 'Luis', number: 77885522),
+  Contact(name: 'Omar', number: 66223311),
+  Contact(name: 'Pool', number: 55665544),
+  Contact(name: 'Rogelio', number: 15975355),
+  Contact(name: 'Victor', number: 55185236),
+  Contact(name: 'David', number: 75232221),
+];
+
+class Item {
+  final String name;
+  final double price;
+  final String imgUrl;
+
+  Item({required String this.name, required this.price, required this.imgUrl});
+}
+
+List<Item> items = [
+  Item(
+    name: 'Playera Básica Lisa Manga Corta Cuello Redondo Caballero Milano',
+    price: 120.0,
+    imgUrl:
+        'https://cdn.shopify.com/s/files/1/0346/7558/9257/products/661-9025A_Playera_Basica_Lisa_Manga_Corta_Cuello_Redondo_Caballero_Milano_Tallas-Extras_e_1024x1024.jpg?v=1664405148',
+  ),
+  Item(
+    name: 'Pantalón Vaquero Ajustado para Hombre',
+    price: 89.99,
+    imgUrl:
+        'https://cdn.shopify.com/s/files/1/0312/5821/4444/products/VV-pantalon-mezclilla-wrangler-936wbk-negro-2.jpg?v=1684708030',
+  ),
+  Item(
+    name: 'Vestido de Noche Elegante sin Mangas',
+    price: 249.5,
+    imgUrl: 'https://m.media-amazon.com/images/I/51nAARn7FfL._AC_SX522_.jpg',
+  ),
+  Item(
+    name: 'Zapatillas Deportivas para Mujer',
+    price: 79.9,
+    imgUrl: 'https://m.media-amazon.com/images/I/71pSNO4LBuL._AC_SX395_.jpg',
+  ),
+  Item(
+    name: 'Chaqueta de Cuero Genuino para Hombre',
+    price: 299.99,
+    imgUrl: 'https://m.media-amazon.com/images/I/61qRL7L9AxL._AC_UY1000_.jpg',
+  ),
+  // Agrega los demás artículos de manera similar
+  // ...
+  // ...
+  Item(
+    name: 'Gafas de Sol Polarizadas Unisex',
+    price: 59.0,
+    imgUrl: 'https://m.media-amazon.com/images/I/519NQwNO96L._AC_SX569_.jpg',
+  ),
+  Item(
+    name: 'Bufanda de Lana Tejida a Mano',
+    price: 34.5,
+    imgUrl:
+        'https://i.etsystatic.com/8503025/r/il/bd5715/657890456/il_570xN.657890456_jfd5.jpg',
+  ),
+  Item(
+    name: 'Bolso de Cuero Genuino para Mujer',
+    price: 179.99,
+    imgUrl: 'https://m.media-amazon.com/images/I/71n+knMbX4L._AC_SX569_.jpg',
+  ),
+  Item(
+    name: 'Reloj de Pulsera Analógico de Acero Inoxidable',
+    price: 199.0,
+    imgUrl: 'https://m.media-amazon.com/images/I/61Sa4LTT02L._AC_SX522_.jpg',
+  ),
+
+  Item(
+    name: 'Camiseta de Algodón para Niños',
+    price: 29.9,
+    imgUrl: 'https://m.media-amazon.com/images/I/519WcZcICqL._AC_SX569_.jpg',
+  ),
+];
