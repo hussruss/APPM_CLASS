@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter/material.dart';
-
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -11,14 +9,174 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Material App',
-      home: RefreshIndicatorScreen(),
+      home: ExpansionTileE(),
+    );
+  }
+}
+
+class ExpansionTileE extends StatelessWidget {
+  const ExpansionTileE({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('ExpansionTileE'),
+      ),
+      body: Column(
+        children: const [
+          ExpansionTile(
+            title: Text('UCampers'),
+            leading: Icon(Icons.person),
+            children: [
+              ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.blue,
+                    child: Text('R'),
+                  ),
+                  trailing: Icon(Icons.phone),
+                  title: Text('Rogelio'),
+                  subtitle: Text('5555555555'),
+                  style: ListTileStyle.list),
+              ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.blue,
+                    child: Text('X'),
+                  ),
+                  trailing: Icon(Icons.phone),
+                  title: Text('Xavier'),
+                  subtitle: Text('5555555555'),
+                  style: ListTileStyle.list),
+              ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.blue,
+                    child: Text('D'),
+                  ),
+                  trailing: Icon(Icons.phone),
+                  title: Text('Diego'),
+                  subtitle: Text('5555555555'),
+                  style: ListTileStyle.list)
+            ],
+          ),
+          ExpansionTile(
+              title: Text('BootCamps'),
+              trailing: Icon(Icons.arrow_drop_down_circle),
+              leading: Icon(Icons.school),
+              children: [
+                ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Colors.purple,
+                      child: Text('A'),
+                    ),
+                    trailing: Icon(Icons.smartphone),
+                    title: Text('APPM con  Flutter'),
+                    subtitle: Text('Creación de apps con flutter'),
+                    style: ListTileStyle.list),
+                ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Colors.yellow,
+                      child: Text('F'),
+                    ),
+                    trailing: Icon(Icons.code),
+                    title: Text('FullStack JS'),
+                    subtitle: Text('Creación de apps web con JS'),
+                    style: ListTileStyle.list),
+                ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Colors.black,
+                      child: Text('G'),
+                    ),
+                    trailing: Icon(Icons.gamepad),
+                    title: Text('Games'),
+                    subtitle: Text('Creación de juegos con Unity'),
+                    style: ListTileStyle.list),
+              ])
+        ],
+      ),
+    );
+  }
+}
+
+class GridViewBuilderStore extends StatelessWidget {
+  const GridViewBuilderStore({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('GridViewBasic'),
+      ),
+      body: GridView.builder(
+          scrollDirection: Axis.vertical,
+          reverse: false,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisSpacing: 3,
+            crossAxisSpacing: 3,
+          ),
+          itemCount: items.length,
+          itemBuilder: (context, idx) => _buildItem(
+              items[idx], Colors.primaries[idx % Colors.primaries.length])),
+    );
+  }
+}
+
+class GridViewBuilder extends StatelessWidget {
+  const GridViewBuilder({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('GridViewBasic'),
+      ),
+      body: GridView.builder(
+        scrollDirection: Axis.vertical,
+        reverse: false,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 1,
+          mainAxisSpacing: 3,
+          crossAxisSpacing: 3,
+        ),
+        itemCount: 200,
+        itemBuilder: (context, idx) => _buildContainer(
+            idx.toString(), Colors.primaries[idx % Colors.primaries.length]),
+      ),
+    );
+  }
+}
+
+class GridViewBasic extends StatelessWidget {
+  List<int> lst = List.generate(100, (index) => index); //[1,2,3....n .. 100]
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('GridViewBasic'),
+      ),
+      body: GridView(
+        scrollDirection: Axis.vertical,
+        reverse: false,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 1,
+          mainAxisSpacing: 3,
+          crossAxisSpacing: 3,
+        ),
+        children: lst
+            .map((e) => Image.network(
+                'https://blog.hootsuite.com/wp-content/uploads/2022/02/Instagram-post-ideas-engagement.png'))
+
+            // _buildContainer(
+            //     e.toString(), Colors.primaries[e % Colors.primaries.length]))
+            .toList(),
+      ),
     );
   }
 }
 
 class ListViewBasic extends StatelessWidget {
   ScrollController _controller = ScrollController();
-  List<int> lst = List.generate(100, (index) => index);
+  List<int> lst = List.generate(100, (index) => index); //[1,2,3....n .. 100]
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +230,7 @@ class ListViewBuilderE extends StatelessWidget {
         scrollDirection: Axis.vertical,
         reverse: false,
         controller: _controller,
-        //itemCount: 100,
+        itemCount: 100,
         itemBuilder: ((context, index) {
           return _buildContainer(index.toString(),
               Colors.primaries[index % Colors.primaries.length]);
@@ -198,7 +356,7 @@ Container _buildContainer(String title, Color color) {
 Card _buildItem(Item item, Color color) {
   print('Render $item');
   return Card(
-    elevation: 3,
+    elevation: 10,
     child: Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -305,6 +463,234 @@ class Item {
 }
 
 List<Item> items = [
+  Item(
+    name: 'Playera Básica Lisa Manga Corta Cuello Redondo Caballero Milano',
+    price: 120.0,
+    imgUrl:
+        'https://cdn.shopify.com/s/files/1/0346/7558/9257/products/661-9025A_Playera_Basica_Lisa_Manga_Corta_Cuello_Redondo_Caballero_Milano_Tallas-Extras_e_1024x1024.jpg?v=1664405148',
+  ),
+  Item(
+    name: 'Pantalón Vaquero Ajustado para Hombre',
+    price: 89.99,
+    imgUrl:
+        'https://cdn.shopify.com/s/files/1/0312/5821/4444/products/VV-pantalon-mezclilla-wrangler-936wbk-negro-2.jpg?v=1684708030',
+  ),
+  Item(
+    name: 'Vestido de Noche Elegante sin Mangas',
+    price: 249.5,
+    imgUrl: 'https://m.media-amazon.com/images/I/51nAARn7FfL._AC_SX522_.jpg',
+  ),
+  Item(
+    name: 'Zapatillas Deportivas para Mujer',
+    price: 79.9,
+    imgUrl: 'https://m.media-amazon.com/images/I/71pSNO4LBuL._AC_SX395_.jpg',
+  ),
+  Item(
+    name: 'Chaqueta de Cuero Genuino para Hombre',
+    price: 299.99,
+    imgUrl: 'https://m.media-amazon.com/images/I/61qRL7L9AxL._AC_UY1000_.jpg',
+  ),
+  // Agrega los demás artículos de manera similar
+  // ...
+  // ...
+  Item(
+    name: 'Gafas de Sol Polarizadas Unisex',
+    price: 59.0,
+    imgUrl: 'https://m.media-amazon.com/images/I/519NQwNO96L._AC_SX569_.jpg',
+  ),
+  Item(
+    name: 'Bufanda de Lana Tejida a Mano',
+    price: 34.5,
+    imgUrl:
+        'https://i.etsystatic.com/8503025/r/il/bd5715/657890456/il_570xN.657890456_jfd5.jpg',
+  ),
+  Item(
+    name: 'Bolso de Cuero Genuino para Mujer',
+    price: 179.99,
+    imgUrl: 'https://m.media-amazon.com/images/I/71n+knMbX4L._AC_SX569_.jpg',
+  ),
+  Item(
+    name: 'Reloj de Pulsera Analógico de Acero Inoxidable',
+    price: 199.0,
+    imgUrl: 'https://m.media-amazon.com/images/I/61Sa4LTT02L._AC_SX522_.jpg',
+  ),
+
+  Item(
+    name: 'Camiseta de Algodón para Niños',
+    price: 29.9,
+    imgUrl: 'https://m.media-amazon.com/images/I/519WcZcICqL._AC_SX569_.jpg',
+  ),
+  Item(
+    name: 'Playera Básica Lisa Manga Corta Cuello Redondo Caballero Milano',
+    price: 120.0,
+    imgUrl:
+        'https://cdn.shopify.com/s/files/1/0346/7558/9257/products/661-9025A_Playera_Basica_Lisa_Manga_Corta_Cuello_Redondo_Caballero_Milano_Tallas-Extras_e_1024x1024.jpg?v=1664405148',
+  ),
+  Item(
+    name: 'Pantalón Vaquero Ajustado para Hombre',
+    price: 89.99,
+    imgUrl:
+        'https://cdn.shopify.com/s/files/1/0312/5821/4444/products/VV-pantalon-mezclilla-wrangler-936wbk-negro-2.jpg?v=1684708030',
+  ),
+  Item(
+    name: 'Vestido de Noche Elegante sin Mangas',
+    price: 249.5,
+    imgUrl: 'https://m.media-amazon.com/images/I/51nAARn7FfL._AC_SX522_.jpg',
+  ),
+  Item(
+    name: 'Zapatillas Deportivas para Mujer',
+    price: 79.9,
+    imgUrl: 'https://m.media-amazon.com/images/I/71pSNO4LBuL._AC_SX395_.jpg',
+  ),
+  Item(
+    name: 'Chaqueta de Cuero Genuino para Hombre',
+    price: 299.99,
+    imgUrl: 'https://m.media-amazon.com/images/I/61qRL7L9AxL._AC_UY1000_.jpg',
+  ),
+  // Agrega los demás artículos de manera similar
+  // ...
+  // ...
+  Item(
+    name: 'Gafas de Sol Polarizadas Unisex',
+    price: 59.0,
+    imgUrl: 'https://m.media-amazon.com/images/I/519NQwNO96L._AC_SX569_.jpg',
+  ),
+  Item(
+    name: 'Bufanda de Lana Tejida a Mano',
+    price: 34.5,
+    imgUrl:
+        'https://i.etsystatic.com/8503025/r/il/bd5715/657890456/il_570xN.657890456_jfd5.jpg',
+  ),
+  Item(
+    name: 'Bolso de Cuero Genuino para Mujer',
+    price: 179.99,
+    imgUrl: 'https://m.media-amazon.com/images/I/71n+knMbX4L._AC_SX569_.jpg',
+  ),
+  Item(
+    name: 'Reloj de Pulsera Analógico de Acero Inoxidable',
+    price: 199.0,
+    imgUrl: 'https://m.media-amazon.com/images/I/61Sa4LTT02L._AC_SX522_.jpg',
+  ),
+
+  Item(
+    name: 'Camiseta de Algodón para Niños',
+    price: 29.9,
+    imgUrl: 'https://m.media-amazon.com/images/I/519WcZcICqL._AC_SX569_.jpg',
+  ),
+  Item(
+    name: 'Playera Básica Lisa Manga Corta Cuello Redondo Caballero Milano',
+    price: 120.0,
+    imgUrl:
+        'https://cdn.shopify.com/s/files/1/0346/7558/9257/products/661-9025A_Playera_Basica_Lisa_Manga_Corta_Cuello_Redondo_Caballero_Milano_Tallas-Extras_e_1024x1024.jpg?v=1664405148',
+  ),
+  Item(
+    name: 'Pantalón Vaquero Ajustado para Hombre',
+    price: 89.99,
+    imgUrl:
+        'https://cdn.shopify.com/s/files/1/0312/5821/4444/products/VV-pantalon-mezclilla-wrangler-936wbk-negro-2.jpg?v=1684708030',
+  ),
+  Item(
+    name: 'Vestido de Noche Elegante sin Mangas',
+    price: 249.5,
+    imgUrl: 'https://m.media-amazon.com/images/I/51nAARn7FfL._AC_SX522_.jpg',
+  ),
+  Item(
+    name: 'Zapatillas Deportivas para Mujer',
+    price: 79.9,
+    imgUrl: 'https://m.media-amazon.com/images/I/71pSNO4LBuL._AC_SX395_.jpg',
+  ),
+  Item(
+    name: 'Chaqueta de Cuero Genuino para Hombre',
+    price: 299.99,
+    imgUrl: 'https://m.media-amazon.com/images/I/61qRL7L9AxL._AC_UY1000_.jpg',
+  ),
+  // Agrega los demás artículos de manera similar
+  // ...
+  // ...
+  Item(
+    name: 'Gafas de Sol Polarizadas Unisex',
+    price: 59.0,
+    imgUrl: 'https://m.media-amazon.com/images/I/519NQwNO96L._AC_SX569_.jpg',
+  ),
+  Item(
+    name: 'Bufanda de Lana Tejida a Mano',
+    price: 34.5,
+    imgUrl:
+        'https://i.etsystatic.com/8503025/r/il/bd5715/657890456/il_570xN.657890456_jfd5.jpg',
+  ),
+  Item(
+    name: 'Bolso de Cuero Genuino para Mujer',
+    price: 179.99,
+    imgUrl: 'https://m.media-amazon.com/images/I/71n+knMbX4L._AC_SX569_.jpg',
+  ),
+  Item(
+    name: 'Reloj de Pulsera Analógico de Acero Inoxidable',
+    price: 199.0,
+    imgUrl: 'https://m.media-amazon.com/images/I/61Sa4LTT02L._AC_SX522_.jpg',
+  ),
+
+  Item(
+    name: 'Camiseta de Algodón para Niños',
+    price: 29.9,
+    imgUrl: 'https://m.media-amazon.com/images/I/519WcZcICqL._AC_SX569_.jpg',
+  ),
+  Item(
+    name: 'Playera Básica Lisa Manga Corta Cuello Redondo Caballero Milano',
+    price: 120.0,
+    imgUrl:
+        'https://cdn.shopify.com/s/files/1/0346/7558/9257/products/661-9025A_Playera_Basica_Lisa_Manga_Corta_Cuello_Redondo_Caballero_Milano_Tallas-Extras_e_1024x1024.jpg?v=1664405148',
+  ),
+  Item(
+    name: 'Pantalón Vaquero Ajustado para Hombre',
+    price: 89.99,
+    imgUrl:
+        'https://cdn.shopify.com/s/files/1/0312/5821/4444/products/VV-pantalon-mezclilla-wrangler-936wbk-negro-2.jpg?v=1684708030',
+  ),
+  Item(
+    name: 'Vestido de Noche Elegante sin Mangas',
+    price: 249.5,
+    imgUrl: 'https://m.media-amazon.com/images/I/51nAARn7FfL._AC_SX522_.jpg',
+  ),
+  Item(
+    name: 'Zapatillas Deportivas para Mujer',
+    price: 79.9,
+    imgUrl: 'https://m.media-amazon.com/images/I/71pSNO4LBuL._AC_SX395_.jpg',
+  ),
+  Item(
+    name: 'Chaqueta de Cuero Genuino para Hombre',
+    price: 299.99,
+    imgUrl: 'https://m.media-amazon.com/images/I/61qRL7L9AxL._AC_UY1000_.jpg',
+  ),
+  // Agrega los demás artículos de manera similar
+  // ...
+  // ...
+  Item(
+    name: 'Gafas de Sol Polarizadas Unisex',
+    price: 59.0,
+    imgUrl: 'https://m.media-amazon.com/images/I/519NQwNO96L._AC_SX569_.jpg',
+  ),
+  Item(
+    name: 'Bufanda de Lana Tejida a Mano',
+    price: 34.5,
+    imgUrl:
+        'https://i.etsystatic.com/8503025/r/il/bd5715/657890456/il_570xN.657890456_jfd5.jpg',
+  ),
+  Item(
+    name: 'Bolso de Cuero Genuino para Mujer',
+    price: 179.99,
+    imgUrl: 'https://m.media-amazon.com/images/I/71n+knMbX4L._AC_SX569_.jpg',
+  ),
+  Item(
+    name: 'Reloj de Pulsera Analógico de Acero Inoxidable',
+    price: 199.0,
+    imgUrl: 'https://m.media-amazon.com/images/I/61Sa4LTT02L._AC_SX522_.jpg',
+  ),
+
+  Item(
+    name: 'Camiseta de Algodón para Niños',
+    price: 29.9,
+    imgUrl: 'https://m.media-amazon.com/images/I/519WcZcICqL._AC_SX569_.jpg',
+  ),
   Item(
     name: 'Playera Básica Lisa Manga Corta Cuello Redondo Caballero Milano',
     price: 120.0,
