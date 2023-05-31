@@ -16,9 +16,9 @@ class MyApps extends StatelessWidget {
       initialRoute: '/',
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
-        '/': (context) => const ImageScreen(),
+        '/': (context) => const Home(),
         // When navigating to the "/second" route, build the SecondScreen widget.
-        '/image': (context) => const ImageScreen(),
+        '/images': (context) => const ImageScreen(),
       },
     );
   }
@@ -39,7 +39,14 @@ class _HomeState extends State<Home> {
         title: Text('Home'),
       ),
       body: ListView(
-        children: [IconButton(onPressed: () {}, icon: Icon(Icons.image))],
+        children: [
+          TextButton.icon(
+              label: Text('Image'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/images');
+              },
+              icon: Icon(Icons.image))
+        ],
       ),
     );
   }

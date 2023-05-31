@@ -9,12 +9,14 @@ class ImageScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Images '),
       ),
-      body: ListView(
-        children: [
-          _buildImages(context, 'assets/images/ls1.jpeg'),
-          _buildImages(context, 'assets/images/ls2.jpg'),
-          _buildImages(context, 'assets/images/ls3.jpg'),
-        ],
+      body: ListView.builder(
+        itemCount: 10,
+        itemBuilder: (context, index) {
+          return _buildImagesNetwork(
+            context,
+            'https://source.unsplash.com/random/250×250/?cats&${index}',
+          );
+        },
       ),
     );
   }
@@ -28,7 +30,7 @@ class ImageScreen extends StatelessWidget {
           color: Colors.red,
           child: Image(
             image: AssetImage(imageAsset),
-            alignment: Alignment.topLeft,
+            fit: BoxFit.cover,
             errorBuilder: (context, error, stackTrace) {
               return Center(
                 child: Text('Image not found'),
@@ -38,6 +40,23 @@ class ImageScreen extends StatelessWidget {
         ),
         Divider(),
       ],
+    );
+  }
+
+  Image _buildImagesNetwork(BuildContext context, String imageAsset) {
+    return Image.network(
+      imageAsset,
+      errorBuilder: (context, error, stackTrace) {
+        return Center(
+          child: Text('Image not found'),
+        );
+      },
+      fit: BoxFit.cover,
+      loadingBuilder: (context, child, loadingProgress) {
+        return loadingProgress != null
+            ? Center(child: CircularProgressIndicator())
+            : child;
+      },
     );
   }
 }
