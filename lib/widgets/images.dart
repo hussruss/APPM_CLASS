@@ -10,7 +10,7 @@ class ImageScreen extends StatelessWidget {
         title: Text('Images '),
       ),
       body: ListView.builder(
-        itemCount: 10,
+        itemCount: 30,
         itemBuilder: (context, index) {
           return _buildImagesNetwork(
             context,
@@ -32,7 +32,7 @@ class ImageScreen extends StatelessWidget {
             image: AssetImage(imageAsset),
             fit: BoxFit.cover,
             errorBuilder: (context, error, stackTrace) {
-              return Center(
+              return const Center(
                 child: Text('Image not found'),
               );
             },
@@ -47,16 +47,28 @@ class ImageScreen extends StatelessWidget {
     return Image.network(
       imageAsset,
       errorBuilder: (context, error, stackTrace) {
-        return Center(
+        return const Center(
           child: Text('Image not found'),
         );
       },
       fit: BoxFit.cover,
       loadingBuilder: (context, child, loadingProgress) {
         return loadingProgress != null
-            ? Center(child: CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator())
             : child;
       },
     );
   }
 }
+
+
+  // Center(
+  //         child: Container(
+  //           height: 400,
+  //           width: 400,
+  //           color: Colors.red,
+  //           child: Image(
+  //               fit: BoxFit.fitWidth,
+  //               image: AssetImage('assets/images/ls2.jpg')),
+  //         ),
+  //       )

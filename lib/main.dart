@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:m1_s4/widgets/images.dart';
+import 'package:m1_s4/widgets/spotify.dart';
+import 'package:m1_s4/widgets/video.dart';
+import 'package:m1_s4/widgets/youtube.dart';
 import 'package:video_player/video_player.dart';
 
 //'https://source.unsplash.com/random/250×250/?programming&${index}'
@@ -15,11 +18,16 @@ class MyApps extends StatelessWidget {
       title: 'Material App',
       initialRoute: '/',
       routes: {
-        // When navigating to the "/" route, build the FirstScreen widget.
         '/': (context) => const Home(),
-        // When navigating to the "/second" route, build the SecondScreen widget.
         '/images': (context) => const ImageScreen(),
+        '/video': (context) => const VideoApp(),
+        '/youtube': (context) => const Youtube(),
+        '/spotify': (context) => const Spotify(),
       },
+      theme: ThemeData.dark().copyWith(
+          appBarTheme: AppBarTheme(color: Colors.red),
+          floatingActionButtonTheme:
+              FloatingActionButtonThemeData(backgroundColor: Colors.red)),
     );
   }
 }
@@ -40,72 +48,48 @@ class _HomeState extends State<Home> {
       ),
       body: ListView(
         children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextButton.icon(
+                // style: ButtonStyle(
+                // backgroundColor: MaterialStatePropertyAll(Colors.green),
+                // textStyle: MaterialStateProperty.all(
+                //     TextStyle(color: Colors.white))),
+                label: Text('Image'),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/images');
+                },
+                icon: Icon(Icons.image)),
+          ),
+          SizedBox(
+            height: 20,
+          ),
           TextButton.icon(
-              label: Text('Image'),
+              label: Text('video'),
               onPressed: () {
-                Navigator.pushNamed(context, '/images');
+                Navigator.pushNamed(context, '/video');
               },
-              icon: Icon(Icons.image))
+              icon: Icon(Icons.video_file)),
+          SizedBox(
+            height: 20,
+          ),
+          TextButton.icon(
+              label: Text('Youtube'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/youtube');
+              },
+              icon: Icon(Icons.video_camera_front_outlined)),
+          SizedBox(
+            height: 20,
+          ),
+          TextButton.icon(
+              label: Text('Spotify'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/spotify');
+              },
+              icon: Icon(Icons.queue_music))
         ],
       ),
     );
-  }
-}
-
-//Video App
-class VideoApp extends StatefulWidget {
-  const VideoApp({Key? key}) : super(key: key);
-
-  @override
-  _VideoAppState createState() => _VideoAppState();
-}
-
-class _VideoAppState extends State<VideoApp> {
-  late VideoPlayerController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = VideoPlayerController.network(
-        'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4')
-      ..initialize().then((_) {
-        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-        setState(() {});
-      });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Video Demo',
-      home: Scaffold(
-        body: Center(
-          child: _controller.value.isInitialized
-              ? AspectRatio(
-                  aspectRatio: _controller.value.aspectRatio,
-                  child: VideoPlayer(_controller),
-                )
-              : Container(),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            setState(() {
-              _controller.value.isPlaying
-                  ? _controller.pause()
-                  : _controller.play();
-            });
-          },
-          child: Icon(
-            _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-          ),
-        ),
-      ),
-    );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _controller.dispose();
   }
 }
