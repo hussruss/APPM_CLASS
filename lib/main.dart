@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:m1_s4/widgets/apectRatio.dart';
+import 'package:m1_s4/widgets/constranedBox.dart';
 import 'package:m1_s4/widgets/images.dart';
+import 'package:m1_s4/widgets/login.dart';
+import 'package:m1_s4/widgets/sixedBox.dart';
 import 'package:m1_s4/widgets/spotify.dart';
 import 'package:m1_s4/widgets/video.dart';
 import 'package:m1_s4/widgets/youtube.dart';
-import 'package:video_player/video_player.dart';
+
+import 'widgets/fittedBox.dart';
 
 //'https://source.unsplash.com/random/250×250/?programming&${index}'
 
@@ -14,6 +19,7 @@ class MyApps extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const hola = '';
     return MaterialApp(
       title: 'Material App',
       initialRoute: '/',
@@ -23,11 +29,16 @@ class MyApps extends StatelessWidget {
         '/video': (context) => const VideoApp(),
         '/youtube': (context) => const Youtube(),
         '/spotify': (context) => const Spotify(),
+        '/fittedBox': (context) => const FittedBoxWidget(),
+        '/aspectRatio': (context) => const AspectRatioWidget(),
+        '/sizedBox': (context) => const SizedBoxWidget(),
+        '/constrainedBox': (context) => const ConstrainedBoxWidget(),
+        '/login': (context) => const LoginScreen(),
       },
-      theme: ThemeData.dark().copyWith(
-          appBarTheme: AppBarTheme(color: Colors.red),
-          floatingActionButtonTheme:
-              FloatingActionButtonThemeData(backgroundColor: Colors.red)),
+      // theme: ThemeData.dark().copyWith(
+      //     appBarTheme: AppBarTheme(color: Colors.red),
+      //     floatingActionButtonTheme:
+      //         FloatingActionButtonThemeData(backgroundColor: Colors.red)),
     );
   }
 }
@@ -87,7 +98,43 @@ class _HomeState extends State<Home> {
               onPressed: () {
                 Navigator.pushNamed(context, '/spotify');
               },
-              icon: Icon(Icons.queue_music))
+              icon: Icon(Icons.queue_music)),
+          SizedBox(
+            height: 20,
+          ),
+          TextButton.icon(
+              label: Text('FittedBox'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/fittedBox');
+              },
+              icon: Icon(Icons.add_box)),
+          SizedBox(
+            height: 20,
+          ),
+          TextButton.icon(
+              label: Text('AspectRatio'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/aspectRatio');
+              },
+              icon: Icon(Icons.check_box)),
+          TextButton.icon(
+              label: Text('SizedBox'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/sizedBox');
+              },
+              icon: Icon(Icons.space_bar)),
+          TextButton.icon(
+              label: Text('ConstrainedBox'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/constrainedBox');
+              },
+              icon: Icon(Icons.maximize)),
+          TextButton.icon(
+              label: Text('Login'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/login');
+              },
+              icon: Icon(Icons.login))
         ],
       ),
     );
