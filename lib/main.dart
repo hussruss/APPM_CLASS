@@ -1,5 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:m1_s4/widgets/apectRatio.dart';
+import 'package:m1_s4/widgets/backdropFilter.dart';
+import 'package:m1_s4/widgets/clipOval.dart';
+import 'package:m1_s4/widgets/clipPath.dart';
+import 'package:m1_s4/widgets/clipRect.dart';
 import 'package:m1_s4/widgets/constranedBox.dart';
 import 'package:m1_s4/widgets/images.dart';
 import 'package:m1_s4/widgets/login.dart';
@@ -34,6 +40,10 @@ class MyApps extends StatelessWidget {
         '/sizedBox': (context) => const SizedBoxWidget(),
         '/constrainedBox': (context) => const ConstrainedBoxWidget(),
         '/login': (context) => const LoginScreen(),
+        '/backDropFilter': (context) => const BackDropFilterWidget(),
+        '/clipOval': (context) => const ClipOvalWidget(),
+        '/clipPath': (context) => const ClipPathWidget(),
+        '/clipRect': (context) => const ClipRectWidget(),
       },
       // theme: ThemeData.dark().copyWith(
       //     appBarTheme: AppBarTheme(color: Colors.red),
@@ -57,86 +67,75 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: Text('Home'),
       ),
-      body: ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextButton.icon(
-                // style: ButtonStyle(
-                // backgroundColor: MaterialStatePropertyAll(Colors.green),
-                // textStyle: MaterialStateProperty.all(
-                //     TextStyle(color: Colors.white))),
-                label: Text('Image'),
-                onPressed: () {
-                  Navigator.pushNamed(context, '/images');
-                },
-                icon: Icon(Icons.image)),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          TextButton.icon(
-              label: Text('video'),
-              onPressed: () {
-                Navigator.pushNamed(context, '/video');
-              },
-              icon: Icon(Icons.video_file)),
-          SizedBox(
-            height: 20,
-          ),
-          TextButton.icon(
-              label: Text('Youtube'),
-              onPressed: () {
-                Navigator.pushNamed(context, '/youtube');
-              },
-              icon: Icon(Icons.video_camera_front_outlined)),
-          SizedBox(
-            height: 20,
-          ),
-          TextButton.icon(
-              label: Text('Spotify'),
-              onPressed: () {
-                Navigator.pushNamed(context, '/spotify');
-              },
-              icon: Icon(Icons.queue_music)),
-          SizedBox(
-            height: 20,
-          ),
-          TextButton.icon(
-              label: Text('FittedBox'),
-              onPressed: () {
-                Navigator.pushNamed(context, '/fittedBox');
-              },
-              icon: Icon(Icons.add_box)),
-          SizedBox(
-            height: 20,
-          ),
-          TextButton.icon(
-              label: Text('AspectRatio'),
-              onPressed: () {
-                Navigator.pushNamed(context, '/aspectRatio');
-              },
-              icon: Icon(Icons.check_box)),
-          TextButton.icon(
-              label: Text('SizedBox'),
-              onPressed: () {
-                Navigator.pushNamed(context, '/sizedBox');
-              },
-              icon: Icon(Icons.space_bar)),
-          TextButton.icon(
-              label: Text('ConstrainedBox'),
-              onPressed: () {
-                Navigator.pushNamed(context, '/constrainedBox');
-              },
-              icon: Icon(Icons.maximize)),
-          TextButton.icon(
-              label: Text('Login'),
-              onPressed: () {
-                Navigator.pushNamed(context, '/login');
-              },
-              icon: Icon(Icons.login))
-        ],
+      body: GridView.builder(
+        itemCount: itemList.length,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3, mainAxisSpacing: 4, crossAxisSpacing: 4),
+        itemBuilder: (BuildContext context, int index) {
+          return _buildItemButon(index, context);
+        },
       ),
     );
   }
+
+  GestureDetector _buildItemButon(int index, BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, itemList[index].route);
+      },
+      child: Card(
+        elevation: 4,
+        child: Container(
+          padding: EdgeInsets.all(15),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.primaries[index % Colors.primaries.length],
+                Colors.primaries[index % Colors.primaries.length].shade500,
+                Colors.primaries[index + 1 % Colors.primaries.length],
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+          child: Column(children: [
+            Expanded(
+                child: Icon(
+              itemList[index].icon,
+              color: Colors.white,
+              size: 50,
+            )),
+            Text(
+              itemList[index].title,
+              style: TextStyle(fontSize: 18, color: Colors.white),
+            )
+          ]),
+        ),
+      ),
+    );
+  }
+}
+
+List<ButtonIconItem> itemList = [
+  ButtonIconItem('Image', Icons.image, '/images'),
+  ButtonIconItem('Video', Icons.video_file, '/video'),
+  ButtonIconItem('Youtube', Icons.video_camera_front_outlined, '/youtube'),
+  ButtonIconItem('Spotify', Icons.queue_music, '/spotify'),
+  ButtonIconItem('FittedBox', Icons.add_box, '/fittedBox'),
+  ButtonIconItem('AspectRatio', Icons.check_box, '/aspectRatio'),
+  ButtonIconItem('SizedBox', Icons.space_bar, '/sizedBox'),
+  ButtonIconItem('ConstrainedBox', Icons.maximize, '/constrainedBox'),
+  ButtonIconItem('Login', Icons.login, '/login'),
+  ButtonIconItem('BackDropFilter', Icons.blur_circular, '/backDropFilter'),
+  ButtonIconItem('ClipÓval', Icons.circle, '/clipOval'),
+  ButtonIconItem('ClipPath', Icons.format_shapes, '/clipPath'),
+  ButtonIconItem('ClipRect', Icons.rectangle, '/clipRect'),
+];
+
+class ButtonIconItem {
+  final String title;
+  final IconData icon;
+  final String route;
+
+  ButtonIconItem(this.title, this.icon, this.route);
 }
