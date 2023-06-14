@@ -15,13 +15,13 @@ class BackDropFilterWidget extends StatelessWidget {
           children: [
             Image.network('https://source.unsplash.com/random/250×250/?cars'),
             BackdropFilter(
-              //filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+              filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
               // filter: ImageFilter.dilate(radiusX: 5, radiusY: 5),
               //filter: ImageFilter.erode(radiusX: 2, radiusY: 2),
-              //filter: ImageFilter.matrix(Matrix4.rotationZ(5).storage),
-              filter: ImageFilter.compose(
-                  outer: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
-                  inner: ImageFilter.dilate(radiusX: 1, radiusY: 1)),
+              // filter: ImageFilter.matrix(Matrix4.rotationZ(0.5).storage),
+              // filter: ImageFilter.compose(
+              //     outer: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
+              //     inner: ImageFilter.dilate(radiusX: 1, radiusY: 1)),
               child: Container(),
             )
           ],

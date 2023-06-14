@@ -12,14 +12,16 @@ class ClipOvalWidget extends StatelessWidget {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ClipOval(
-                clipper: MyCustomClipper(),
-                child: Image.network(
-                  'https://source.unsplash.com/random/250×250/?person',
-                  height: 400,
-                  width: 400,
-                  fit: BoxFit.cover,
-                )),
+            Center(
+              child: ClipOval(
+                  // clipper: MyCustomClipper(),
+                  child: Image.network(
+                'https://source.unsplash.com/random/250×250/?person',
+                height: 300,
+                width: 300,
+                fit: BoxFit.cover,
+              )),
+            ),
           ],
         ));
   }
