@@ -7,10 +7,15 @@ import 'package:m1_s4/widgets/clipOval.dart';
 import 'package:m1_s4/widgets/clipPath.dart';
 import 'package:m1_s4/widgets/clipRect.dart';
 import 'package:m1_s4/widgets/constranedBox.dart';
+import 'package:m1_s4/widgets/customPaint.dart';
+import 'package:m1_s4/widgets/decoratedBox.dart';
 import 'package:m1_s4/widgets/images.dart';
 import 'package:m1_s4/widgets/login.dart';
+import 'package:m1_s4/widgets/opacity.dart';
+import 'package:m1_s4/widgets/rotatedBox.dart';
 import 'package:m1_s4/widgets/sixedBox.dart';
 import 'package:m1_s4/widgets/spotify.dart';
+import 'package:m1_s4/widgets/transform.dart';
 import 'package:m1_s4/widgets/video.dart';
 import 'package:m1_s4/widgets/youtube.dart';
 
@@ -44,6 +49,11 @@ class MyApps extends StatelessWidget {
         '/clipOval': (context) => const ClipOvalWidget(),
         '/clipPath': (context) => const ClipPathWidget(),
         '/clipRect': (context) => const ClipRectWidget(),
+        '/customPaint': (context) => const CustomPaintWidget(),
+        '/decoratedBox': (context) => const DecoratedBoxWidget(),
+        '/opacity': (context) => const OpacityWidget(),
+        '/rotatedBox': (context) => const RotatedWidget(),
+        '/transform': (context) => const TransformWidget(),
       },
       // theme: ThemeData.dark().copyWith(
       //     appBarTheme: AppBarTheme(color: Colors.red),
@@ -90,9 +100,11 @@ class _HomeState extends State<Home> {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Colors.primaries[index % Colors.primaries.length],
+                Colors.primaries[index % Colors.primaries.length].shade700,
                 Colors.primaries[index % Colors.primaries.length].shade500,
-                Colors.primaries[index + 1 % Colors.primaries.length],
+                Colors.primaries[Colors.primaries.length == index
+                    ? index + 1 % Colors.primaries.length
+                    : index % Colors.primaries.length],
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
@@ -107,7 +119,10 @@ class _HomeState extends State<Home> {
             )),
             Text(
               itemList[index].title,
-              style: TextStyle(fontSize: 18, color: Colors.white),
+              style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
             )
           ]),
         ),
@@ -130,6 +145,12 @@ List<ButtonIconItem> itemList = [
   ButtonIconItem('ClipÓval', Icons.circle, '/clipOval'),
   ButtonIconItem('ClipPath', Icons.format_shapes, '/clipPath'),
   ButtonIconItem('ClipRect', Icons.rectangle, '/clipRect'),
+  ButtonIconItem('CustomPaint', Icons.format_paint, '/customPaint'),
+  ButtonIconItem(
+      'DecoratedBox', Icons.check_box_outline_blank, '/decoratedBox'),
+  ButtonIconItem('Opacity', Icons.opacity, '/opacity'),
+  ButtonIconItem('RotatedBox', Icons.rotate_90_degrees_ccw, '/rotatedBox'),
+  ButtonIconItem('Transform', Icons.transform, '/transform'),
 ];
 
 class ButtonIconItem {
