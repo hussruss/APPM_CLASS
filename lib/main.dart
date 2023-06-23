@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:m1_s4/pages/detalle_page.dart';
 import 'package:m1_s4/widgets/apectRatio.dart';
 import 'package:m1_s4/widgets/backdropFilter.dart';
 import 'package:m1_s4/widgets/clipOval.dart';
@@ -18,6 +19,7 @@ import 'package:m1_s4/widgets/spotify.dart';
 import 'package:m1_s4/widgets/transform.dart';
 import 'package:m1_s4/widgets/video.dart';
 import 'package:m1_s4/widgets/youtube.dart';
+import 'package:m1_s4/youtube/main.dart';
 
 import 'widgets/fittedBox.dart';
 
@@ -33,6 +35,7 @@ class MyApps extends StatelessWidget {
     const hola = '';
     return MaterialApp(
       title: 'Material App',
+      debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
         '/': (context) => const Home(),
@@ -54,6 +57,8 @@ class MyApps extends StatelessWidget {
         '/opacity': (context) => const OpacityWidget(),
         '/rotatedBox': (context) => const RotatedWidget(),
         '/transform': (context) => const TransformWidget(),
+        '/detailPage': (context) => DetallePage(),
+        '/youtubeApp': (context) => YoutubeApp(),
       },
       // theme: ThemeData.dark().copyWith(
       //     appBarTheme: AppBarTheme(color: Colors.red),
@@ -103,7 +108,7 @@ class _HomeState extends State<Home> {
                 Colors.primaries[index % Colors.primaries.length].shade700,
                 Colors.primaries[index % Colors.primaries.length].shade500,
                 Colors.primaries[Colors.primaries.length == index
-                    ? index + 1 % Colors.primaries.length
+                    ? index % Colors.primaries.length
                     : index % Colors.primaries.length],
               ],
               begin: Alignment.topLeft,
@@ -151,6 +156,10 @@ List<ButtonIconItem> itemList = [
   ButtonIconItem('Opacity', Icons.opacity, '/opacity'),
   ButtonIconItem('RotatedBox', Icons.rotate_90_degrees_ccw, '/rotatedBox'),
   ButtonIconItem('Transform', Icons.transform, '/transform'),
+  ButtonIconItem('Youtube App', Icons.youtube_searched_for, '/youtubeApp'),
+  ButtonIconItem('Welcome Page', Icons.rocket, '/welcomePage'),
+  ButtonIconItem('Detail Page', Icons.details, '/detailPage'),
+  ButtonIconItem('Detail Page', Icons.details, '/detailPage'),
 ];
 
 class ButtonIconItem {
