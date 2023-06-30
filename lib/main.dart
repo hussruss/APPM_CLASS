@@ -38,7 +38,7 @@ class MyApps extends StatelessWidget {
   Widget build(BuildContext context) {
     const hola = '';
     return MaterialApp(
-      title: 'Material App',
+      title: 'Material App - Roger',
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
