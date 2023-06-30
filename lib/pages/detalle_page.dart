@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:m1_s4/pages/welcome_page.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class DetallePage extends StatefulWidget {
@@ -17,7 +18,7 @@ class _DetallePageState extends State<DetallePage> {
     return Scaffold(
         body: Stack(
       children: [
-        Backgroud(),
+        Background(),
         _buildBack(),
         Padding(
           padding: const EdgeInsets.only(top: 90.0),
@@ -73,7 +74,122 @@ class _DetallePageState extends State<DetallePage> {
                             ))
                       ],
                     ),
-                  ))
+                  )),
+              SizedBox(
+                height: 20,
+              ),
+              Align(
+                alignment: Alignment.center,
+                child: Container(
+                  height: 350,
+                  width: MediaQuery.of(context).size.width * 0.7,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey,
+                            offset: Offset(0, 1),
+                            blurRadius: 4)
+                      ]),
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Image.asset(
+                          'assets/images/image_page1.jpeg',
+                          width: 160,
+                        ),
+                        Divider(
+                          height: 2,
+                          thickness: 2,
+                        ),
+                        Row(
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text(
+                                  'You paid',
+                                  style: TextStyle(
+                                      fontFamily: 'Montserrat-Medium',
+                                      fontSize: 16,
+                                      color:
+                                          Color.fromARGB(255, 161, 174, 199)),
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  '\$987 USD',
+                                  style: TextStyle(
+                                      fontFamily: 'Montserrat-Bold',
+                                      fontSize: 18,
+                                      color: Color(0xFF0259cb)),
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  'Service charger',
+                                  style: TextStyle(
+                                      fontFamily: 'Montserrat-Medium',
+                                      fontSize: 16,
+                                      color:
+                                          Color.fromARGB(255, 161, 174, 199)),
+                                ),
+                              ],
+                            ),
+                            ButtonMaterial(
+                              label: 'MORE DETAILS',
+                              height: 40,
+                              width: 120,
+                              fontSize: 12,
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 22),
+                child: Text(
+                  'Open Testing turned out to be very successful. \n Alexas Safeguarded',
+                  style: TextStyle(
+                      fontFamily: 'Montserrat-Bold',
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 57, 134, 235)),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              ButtonMaterial(
+                label: 'Tell your partner',
+                width: MediaQuery.of(context).size.width * 0.8,
+                height: 60,
+                fontSize: 16,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 22),
+                child: Text(
+                  'Not Now',
+                  style: TextStyle(
+                      fontFamily: 'Montserrat-Bold',
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 57, 134, 235)),
+                  textAlign: TextAlign.center,
+                ),
+              ),
             ],
           ),
         )
@@ -93,8 +209,8 @@ class _DetallePageState extends State<DetallePage> {
   }
 }
 
-class Backgroud extends StatelessWidget {
-  const Backgroud({
+class Background extends StatelessWidget {
+  const Background({
     super.key,
   });
 

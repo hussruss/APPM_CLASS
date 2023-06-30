@@ -41,7 +41,12 @@ class _WelcomePageState extends State<WelcomePage> {
           const SizedBox(
             height: 20,
           ),
-          _buildButton(context),
+          ButtonMaterial(
+            label: 'Get Started',
+            width: MediaQuery.of(context).size.width * 0.8,
+            height: 60,
+            fontSize: 16,
+          ),
           const SizedBox(
             height: 20,
           ),
@@ -67,31 +72,6 @@ class _WelcomePageState extends State<WelcomePage> {
           TextSpan(
               text: 'Sign In', style: TextStyle(fontWeight: FontWeight.w900)),
         ],
-      ),
-    );
-  }
-
-  InkWell _buildButton(BuildContext context) {
-    return InkWell(
-      child: Container(
-        height: 60,
-        width: MediaQuery.of(context).size.width * 0.8,
-        decoration: BoxDecoration(
-            gradient: const LinearGradient(colors: [
-              Color(0xff468AFF),
-              Color(0xff0057C9),
-            ], begin: Alignment.bottomLeft, end: Alignment.bottomRight),
-            borderRadius: BorderRadius.circular(30)),
-        child: const Center(
-          child: Text(
-            'GET STARTED',
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
-            ),
-          ),
-        ),
       ),
     );
   }
@@ -146,6 +126,46 @@ class _WelcomePageState extends State<WelcomePage> {
             fontWeight: FontWeight.bold,
             color: Color(0xFF0259cb)),
         textAlign: TextAlign.center,
+      ),
+    );
+  }
+}
+
+class ButtonMaterial extends StatelessWidget {
+  final String label;
+  final double width;
+  final double height;
+  final double fontSize;
+  const ButtonMaterial({
+    required this.label,
+    required this.width,
+    required this.height,
+    required this.fontSize,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      child: Container(
+        height: height,
+        width: width,
+        decoration: BoxDecoration(
+            gradient: const LinearGradient(colors: [
+              Color(0xff468AFF),
+              Color(0xff0057C9),
+            ], begin: Alignment.bottomLeft, end: Alignment.bottomRight),
+            borderRadius: BorderRadius.circular(30)),
+        child: Center(
+          child: Text(
+            label,
+            style: TextStyle(
+              color: Colors.white,
+              fontFamily: 'Montserrat-Bold',
+              fontSize: fontSize,
+            ),
+          ),
+        ),
       ),
     );
   }
