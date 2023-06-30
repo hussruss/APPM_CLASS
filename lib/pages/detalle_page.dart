@@ -25,148 +25,20 @@ class _DetallePageState extends State<DetallePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                'Congratulation!  \n Your system wors Perfectly',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(
+              _buildTitle(),
+              const SizedBox(
                 height: 20,
               ),
-              Container(
-                  width: MediaQuery.of(context).size.width * 0.6,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: ListTile(
-                    title: Text(
-                      'Alexis Balancesco',
-                      style: TextStyle(
-                          color: Color(0xFF0259CB),
-                          fontFamily: 'Montserrat-Bold',
-                          fontSize: 12),
-                    ),
-                    subtitle: Text('Your result are here',
-                        style: TextStyle(
-                            fontFamily: 'Montserrat-Medium', fontSize: 12)),
-                    trailing: Stack(
-                      children: [
-                        CircleAvatar(
-                          child: Center(
-                            child: Image.asset(
-                              'assets/images/icon_robot.jpeg',
-                              width: 20,
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                            bottom: 0,
-                            right: 0,
-                            child: CircleAvatar(
-                              minRadius: 8,
-                              backgroundColor: Colors.white,
-                              child: CircleAvatar(
-                                minRadius: 6,
-                              ),
-                            ))
-                      ],
-                    ),
-                  )),
-              SizedBox(
+              _buildCard(context),
+              const SizedBox(
                 height: 20,
               ),
-              Align(
-                alignment: Alignment.center,
-                child: Container(
-                  height: 350,
-                  width: MediaQuery.of(context).size.width * 0.7,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.grey,
-                            offset: Offset(0, 1),
-                            blurRadius: 4)
-                      ]),
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Image.asset(
-                          'assets/images/image_page1.jpeg',
-                          width: 160,
-                        ),
-                        Divider(
-                          height: 2,
-                          thickness: 2,
-                        ),
-                        Row(
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Text(
-                                  'You paid',
-                                  style: TextStyle(
-                                      fontFamily: 'Montserrat-Medium',
-                                      fontSize: 16,
-                                      color:
-                                          Color.fromARGB(255, 161, 174, 199)),
-                                ),
-                                SizedBox(height: 5),
-                                Text(
-                                  '\$987 USD',
-                                  style: TextStyle(
-                                      fontFamily: 'Montserrat-Bold',
-                                      fontSize: 18,
-                                      color: Color(0xFF0259cb)),
-                                ),
-                                SizedBox(height: 5),
-                                Text(
-                                  'Service charger',
-                                  style: TextStyle(
-                                      fontFamily: 'Montserrat-Medium',
-                                      fontSize: 16,
-                                      color:
-                                          Color.fromARGB(255, 161, 174, 199)),
-                                ),
-                              ],
-                            ),
-                            ButtonMaterial(
-                              label: 'MORE DETAILS',
-                              height: 40,
-                              width: 120,
-                              fontSize: 12,
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
+              _buildCardImage(context),
+              const SizedBox(
                 height: 20,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 22),
-                child: Text(
-                  'Open Testing turned out to be very successful. \n Alexas Safeguarded',
-                  style: TextStyle(
-                      fontFamily: 'Montserrat-Bold',
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 57, 134, 235)),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              SizedBox(
+              _buildSubTitle(),
+              const SizedBox(
                 height: 20,
               ),
               ButtonMaterial(
@@ -175,26 +47,165 @@ class _DetallePageState extends State<DetallePage> {
                 height: 60,
                 fontSize: 16,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 22),
-                child: Text(
-                  'Not Now',
-                  style: TextStyle(
-                      fontFamily: 'Montserrat-Bold',
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 57, 134, 235)),
-                  textAlign: TextAlign.center,
-                ),
-              ),
+              _buildText(),
             ],
           ),
         )
       ],
     ));
+  }
+
+  Padding _buildText() {
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 22),
+      child: Text(
+        'Not Now',
+        style: TextStyle(
+            fontFamily: 'Montserrat-Bold',
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+            color: Color.fromARGB(255, 57, 134, 235)),
+        textAlign: TextAlign.center,
+      ),
+    );
+  }
+
+  Padding _buildSubTitle() {
+    return const Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 22),
+      child: Text(
+        'Open Testing turned out to be very successful. \n Alexas Safeguarded',
+        style: TextStyle(
+            fontFamily: 'Montserrat-Bold',
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+            color: Color.fromARGB(255, 57, 134, 235)),
+        textAlign: TextAlign.center,
+      ),
+    );
+  }
+
+  Align _buildCardImage(BuildContext context) {
+    return Align(
+      alignment: Alignment.center,
+      child: Container(
+        height: 350,
+        width: MediaQuery.of(context).size.width * 0.7,
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: const [
+              BoxShadow(color: Colors.grey, offset: Offset(0, 1), blurRadius: 4)
+            ]),
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Image.asset(
+                'assets/images/image_page1.jpeg',
+                width: 160,
+              ),
+              const Divider(
+                height: 2,
+                thickness: 2,
+              ),
+              Row(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: const [
+                      Text(
+                        'You paid',
+                        style: TextStyle(
+                            fontFamily: 'Montserrat-Medium',
+                            fontSize: 16,
+                            color: Color.fromARGB(255, 161, 174, 199)),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        '\$987 USD',
+                        style: TextStyle(
+                            fontFamily: 'Montserrat-Bold',
+                            fontSize: 18,
+                            color: Color(0xFF0259cb)),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        'Service charger',
+                        style: TextStyle(
+                            fontFamily: 'Montserrat-Medium',
+                            fontSize: 16,
+                            color: Color.fromARGB(255, 161, 174, 199)),
+                      ),
+                    ],
+                  ),
+                  const ButtonMaterial(
+                    label: 'MORE DETAILS',
+                    height: 40,
+                    width: 120,
+                    fontSize: 12,
+                  )
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Container _buildCard(BuildContext context) {
+    return Container(
+        width: MediaQuery.of(context).size.width * 0.6,
+        decoration: BoxDecoration(
+            color: Colors.white, borderRadius: BorderRadius.circular(10)),
+        child: ListTile(
+          title: Text(
+            'Alexis Balancesco',
+            style: TextStyle(
+                color: Color(0xFF0259CB),
+                fontFamily: 'Montserrat-Bold',
+                fontSize: 12),
+          ),
+          subtitle: Text('Your result are here',
+              style: TextStyle(fontFamily: 'Montserrat-Medium', fontSize: 12)),
+          trailing: Stack(
+            children: [
+              CircleAvatar(
+                child: Center(
+                  child: Image.asset(
+                    'assets/images/icon_robot.jpeg',
+                    width: 20,
+                  ),
+                ),
+              ),
+              Positioned(
+                  bottom: 0,
+                  right: 0,
+                  child: CircleAvatar(
+                    minRadius: 8,
+                    backgroundColor: Colors.white,
+                    child: CircleAvatar(
+                      minRadius: 6,
+                    ),
+                  ))
+            ],
+          ),
+        ));
+  }
+
+  Text _buildTitle() {
+    return Text(
+      'Congratulation!  \n Your system wors Perfectly',
+      style: TextStyle(
+          color: Colors.white, fontSize: 20, fontWeight: FontWeight.w700),
+      textAlign: TextAlign.center,
+    );
   }
 
   Positioned _buildBack() {
