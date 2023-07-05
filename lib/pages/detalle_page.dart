@@ -75,7 +75,7 @@ class _DetallePageState extends State<DetallePage> {
 
   Padding _buildSubTitle() {
     return const Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 22),
+      padding: EdgeInsets.symmetric(horizontal: 22),
       child: Text(
         'Open Testing turned out to be very successful. \n Alexas Safeguarded',
         style: TextStyle(
@@ -113,12 +113,12 @@ class _DetallePageState extends State<DetallePage> {
                 height: 2,
                 thickness: 2,
               ),
-              Row(
+              const Row(
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: const [
+                    children: [
                       Text(
                         'You paid',
                         style: TextStyle(
