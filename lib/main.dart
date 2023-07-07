@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:m1_s4/pages/detalle_page.dart';
 import 'package:m1_s4/pages/welcome_page.dart';
+import 'package:m1_s4/widgets/alertas.dart';
 import 'package:m1_s4/widgets/apectRatio.dart';
 import 'package:m1_s4/widgets/backdropFilter.dart';
 import 'package:m1_s4/widgets/clipOval.dart';
@@ -12,6 +13,7 @@ import 'package:m1_s4/widgets/constranedBox.dart';
 import 'package:m1_s4/widgets/cupertino.dart';
 import 'package:m1_s4/widgets/customPaint.dart';
 import 'package:m1_s4/widgets/decoratedBox.dart';
+import 'package:m1_s4/widgets/formulario.dart';
 import 'package:m1_s4/widgets/formulario_simple.dart';
 import 'package:m1_s4/widgets/images.dart';
 import 'package:m1_s4/widgets/login.dart';
@@ -67,6 +69,8 @@ class MyApps extends StatelessWidget {
         '/cupertinoDemo': (context) => CupertinoDemo(),
         '/targetPlatform': (context) => TargetPlatformDemo(),
         '/formularioSimple': (context) => FormularioSimple(),
+        '/formulario': (context) => Formulario(),
+        '/alertas': (context) => Alertas(),
       },
       // theme: ThemeData.dark().copyWith(
       //     appBarTheme: AppBarTheme(color: Colors.red),
@@ -170,6 +174,8 @@ List<ButtonIconItem> itemList = [
   ButtonIconItem('Cupertino', Icons.apple, '/cupertinoDemo'),
   ButtonIconItem('Target Platform', Icons.web, '/targetPlatform'),
   ButtonIconItem('Formulario Simple', Icons.text_format, '/formularioSimple'),
+  ButtonIconItem('Formulario Validaciones', Icons.text_format, '/formulario'),
+  ButtonIconItem('Alertas', Icons.warning, '/alertas'),
 ];
 
 class ButtonIconItem {
