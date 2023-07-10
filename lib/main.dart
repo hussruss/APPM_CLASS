@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:m1_s4/pages/detalle_page.dart';
 import 'package:m1_s4/pages/welcome_page.dart';
 import 'package:m1_s4/widgets/alertas.dart';
+import 'package:m1_s4/widgets/animatedBuilder.dart';
+import 'package:m1_s4/widgets/animatedContainer.dart';
 import 'package:m1_s4/widgets/apectRatio.dart';
 import 'package:m1_s4/widgets/backdropFilter.dart';
 import 'package:m1_s4/widgets/clipOval.dart';
@@ -18,8 +20,10 @@ import 'package:m1_s4/widgets/formulario_simple.dart';
 import 'package:m1_s4/widgets/images.dart';
 import 'package:m1_s4/widgets/login.dart';
 import 'package:m1_s4/widgets/opacity.dart';
+import 'package:m1_s4/widgets/positionedTransition.dart';
 import 'package:m1_s4/widgets/rotatedBox.dart';
 import 'package:m1_s4/widgets/sixedBox.dart';
+import 'package:m1_s4/widgets/splash.dart';
 import 'package:m1_s4/widgets/spotify.dart';
 import 'package:m1_s4/widgets/targetPlatform.dart';
 import 'package:m1_s4/widgets/transform.dart';
@@ -71,6 +75,10 @@ class MyApps extends StatelessWidget {
         '/formularioSimple': (context) => FormularioSimple(),
         '/formulario': (context) => Formulario(),
         '/alertas': (context) => Alertas(),
+        '/animatedContainer': (context) => AnimatedContainerWidget(),
+        '/animatedBuilder': (context) => AnimatedBuilderWidget(),
+        '/splashScreen': (context) => SplashScreen(),
+        '/positionedTransition': (context) => PositionedTransitionWidget(),
       },
       // theme: ThemeData.dark().copyWith(
       //     appBarTheme: AppBarTheme(color: Colors.red),
@@ -176,6 +184,10 @@ List<ButtonIconItem> itemList = [
   ButtonIconItem('Formulario Simple', Icons.text_format, '/formularioSimple'),
   ButtonIconItem('Formulario Validaciones', Icons.text_format, '/formulario'),
   ButtonIconItem('Alertas', Icons.warning, '/alertas'),
+  ButtonIconItem('Animated Container', Icons.animation, '/animatedContainer'),
+  ButtonIconItem('Animated Builder', Icons.animation, '/animatedBuilder'),
+  ButtonIconItem('Splash Screen', Icons.star_half, '/splashScreen'),
+  ButtonIconItem('Positioned Transition', Icons.point_of_sale_outlined, '/positionedTransition'),
 ];
 
 class ButtonIconItem {
