@@ -1,8 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:m1_s4/widgets/navegacion.dart';
 import 'package:m1_s4/pages/detalle_page.dart';
 import 'package:m1_s4/pages/welcome_page.dart';
+import 'package:m1_s4/widgets/alertas.dart';
 import 'package:m1_s4/widgets/apectRatio.dart';
 import 'package:m1_s4/widgets/backdropFilter.dart';
 import 'package:m1_s4/widgets/clipOval.dart';
@@ -12,14 +14,17 @@ import 'package:m1_s4/widgets/constranedBox.dart';
 import 'package:m1_s4/widgets/cupertino.dart';
 import 'package:m1_s4/widgets/customPaint.dart';
 import 'package:m1_s4/widgets/decoratedBox.dart';
+import 'package:m1_s4/widgets/formulario.dart';
 import 'package:m1_s4/widgets/formulario_simple.dart';
 import 'package:m1_s4/widgets/images.dart';
 import 'package:m1_s4/widgets/login.dart';
+import 'package:m1_s4/widgets/navegacion_hero.dart';
 import 'package:m1_s4/widgets/opacity.dart';
 import 'package:m1_s4/widgets/rotatedBox.dart';
 import 'package:m1_s4/widgets/sixedBox.dart';
 import 'package:m1_s4/widgets/spotify.dart';
 import 'package:m1_s4/widgets/targetPlatform.dart';
+import 'package:m1_s4/widgets/task.dart';
 import 'package:m1_s4/widgets/transform.dart';
 import 'package:m1_s4/widgets/video.dart';
 import 'package:m1_s4/widgets/youtube.dart';
@@ -37,14 +42,34 @@ class MyApps extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const hola = '';
+
+    GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey =
+        GlobalKey<ScaffoldMessengerState>();
+
     return MaterialApp(
       title: 'Material App',
+      scaffoldMessengerKey: scaffoldMessengerKey,
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
+      onGenerateRoute: (settings) {
+        print('<<<<<onGenerateRoute $settings');
+      },
+      onUnknownRoute: (RouteSettings settings) {
+        return MaterialPageRoute<void>(
+          settings: settings,
+          builder: (BuildContext context) =>
+              Scaffold(body: Center(child: Text('Not Found'))),
+        );
+      },
+      navigatorObservers: [_NavigatorHistory()],
+      // onGenerateInitialRoutes: (settings) {
+      //   print('<<<<<onGenerateInitialRoutes $settings');
+      //   return [];
+      // },
       routes: {
         '/': (context) => const Home(),
         '/images': (context) => const ImageScreen(),
-        '/video': (context) => const VideoApp(),
+        '/videos': (context) => const VideoApp(),
         '/youtube': (context) => const Youtube(),
         '/spotify': (context) => const Spotify(),
         '/fittedBox': (context) => const FittedBoxWidget(),
@@ -67,6 +92,13 @@ class MyApps extends StatelessWidget {
         '/cupertinoDemo': (context) => CupertinoDemo(),
         '/targetPlatform': (context) => TargetPlatformDemo(),
         '/formularioSimple': (context) => FormularioSimple(),
+        '/formulario': (context) => Formulario(),
+        '/alertas': (context) => Alertas(),
+        '/navegacion': (context) => Navegacion(),
+        '/secondRoute': (context) => SecondRoute(),
+        '/thirdRoute': (context) => ThirdRoute(),
+        '/navHero': (context) => NavegacionHero(),
+        '/task': (context) => TaskListScreen()
       },
       // theme: ThemeData.dark().copyWith(
       //     appBarTheme: AppBarTheme(color: Colors.red),
@@ -170,6 +202,12 @@ List<ButtonIconItem> itemList = [
   ButtonIconItem('Cupertino', Icons.apple, '/cupertinoDemo'),
   ButtonIconItem('Target Platform', Icons.web, '/targetPlatform'),
   ButtonIconItem('Formulario Simple', Icons.text_format, '/formularioSimple'),
+  ButtonIconItem(
+      'Formulario con validaciones', Icons.text_format, '/formulario'),
+  ButtonIconItem('Alertas', Icons.warning, '/alertas'),
+  ButtonIconItem('Navegacion', Icons.navigation, '/navegacion'),
+  ButtonIconItem('Navegacion', Icons.star_purple500_rounded, '/navHero'),
+  ButtonIconItem('Task', Icons.task, '/task'),
 ];
 
 class ButtonIconItem {
@@ -178,4 +216,35 @@ class ButtonIconItem {
   final String route;
 
   ButtonIconItem(this.title, this.icon, this.route);
+}
+
+class _NavigatorHistory extends NavigatorObserver {
+  @override
+  void didPush(Route<dynamic>? route, Route<dynamic>? previousRoute) {
+    print(
+        "History >> ${route!.navigator!.history.map((e) => e.route.settings.name)}");
+    print("${route!.settings.name} pushed");
+  }
+
+  @override
+  void didPop(Route<dynamic>? route, Route<dynamic>? previousRoute) {
+    print(
+        "History >> ${route!.navigator!.history.map((e) => e.route.settings.name)}");
+    print("${route!.settings.name} popped");
+  }
+
+  @override
+  void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
+    print(
+        "History >> ${newRoute!.navigator!.history.map((e) => e.route.settings.name)}");
+    print(
+        "${oldRoute!.settings.name} is replaced by ${newRoute!.settings.name}");
+  }
+
+  @override
+  void didRemove(Route<dynamic>? route, Route<dynamic>? previousRoute) {
+    print(
+        "History >> ${route!.navigator!.history.map((e) => e.route.settings.name)}");
+    print("${route!.settings.name} removed");
+  }
 }
