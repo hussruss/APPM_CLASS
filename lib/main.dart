@@ -16,14 +16,13 @@ import 'widgets/fittedBox.dart';
 
 //'https://source.unsplash.com/random/250×250/?programming&${index}'
 
-void main() => runApp(MyApps());
+void main() => runApp(const MyApps());
 
 class MyApps extends StatelessWidget {
   const MyApps({super.key});
 
   @override
   Widget build(BuildContext context) {
-    const hola = '';
     return MaterialApp(
       title: 'Material App',
       initialRoute: '/',
@@ -105,7 +104,7 @@ class _HomeState extends State<Home> {
             )),
             Text(
               itemList[index].title,
-              style: TextStyle(fontSize: 18, color: Colors.white),
+              style: const TextStyle(fontSize: 18, color: Colors.white),
             )
           ]),
         ),
