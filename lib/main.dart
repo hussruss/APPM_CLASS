@@ -57,12 +57,12 @@ class MyApps extends StatelessWidget {
         '/opacity': (context) => const OpacityWidget(),
         '/rotatedBox': (context) => const RotatedWidget(),
         '/transform': (context) => const TransformWidget(),
-        '/detailPage': (context) => DetallePage(),
-        '/welcomePage': (context) => WelcomePage(),
-        '/youtubeApp': (context) => YoutubeApp(),
-        '/cupertinoDemo': (context) => CupertinoDemo(),
-        '/targetPlatform': (context) => TargetPlatformDemo(),
-        '/formularioSimple': (context) => FormularioSimple(),
+        '/detailPage': (context) => const DetallePage(),
+        '/welcomePage': (context) => const WelcomePage(),
+        '/youtubeApp': (context) => const YoutubeApp(),
+        '/cupertinoDemo': (context) => const CupertinoDemo(),
+        '/targetPlatform': (context) => const TargetPlatformDemo(),
+        '/formularioSimple': (context) => const FormularioSimple(),
       },
       // theme: ThemeData.dark().copyWith(
       //     appBarTheme: AppBarTheme(color: Colors.red),
@@ -109,9 +109,11 @@ class _HomeState extends State<Home> {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Colors.primaries[index % Colors.primaries.length],
+                Colors.primaries[index % Colors.primaries.length].shade700,
                 Colors.primaries[index % Colors.primaries.length].shade500,
-                Colors.primaries[index + 1 % Colors.primaries.length],
+                Colors.primaries[Colors.primaries.length == index
+                    ? index % Colors.primaries.length
+                    : index % Colors.primaries.length],
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
@@ -126,7 +128,7 @@ class _HomeState extends State<Home> {
             )),
             Text(
               itemList[index].title,
-              style: const TextStyle(fontSize: 18, color: Colors.white),
+              style: const TextStyle(fontSize: 20, color: Colors.white),
             )
           ]),
         ),
