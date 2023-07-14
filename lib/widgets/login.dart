@@ -161,7 +161,7 @@ class _LoginScreenState extends State<LoginScreen> {
       child: TextFormField(
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.all(10),
+          contentPadding: const EdgeInsets.all(10),
           filled: true,
           fillColor: Colors.white,
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
