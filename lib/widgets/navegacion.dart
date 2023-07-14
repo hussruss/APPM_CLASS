@@ -127,11 +127,10 @@ class SecondRoute extends StatelessWidget {
               },
             ),
             ElevatedButton(
-              child: const Text('removeRoute'),
               onPressed: () {
-                Navigator.removeRoute(context,
-                    MaterialPageRoute(builder: (context) => ThirdRoute()));
+                Navigator.removeRoute(context, ModalRoute.of(context)!);
               },
+              child: Text('Remove Current Route'),
             ),
             ElevatedButton(
               child: const Text('Is active'),
@@ -203,6 +202,18 @@ class _ThirdRouteState extends State<ThirdRoute> {
                       MaterialPageRoute(builder: (context) => SecondRoute()));
                 },
                 child: Text('Navegar a segunda pantalla con MaterialPage')),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.removeRoute(context, ModalRoute.of(context)!);
+              },
+              child: Text('Remove Current Route'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.removeRouteBelow(context, ModalRoute.of(context)!);
+              },
+              child: Text('Remove Route Below'),
+            ),
             ...Navigator.of(context).history.map((e) => ListTile(
                   title: Text('${e.route.settings}'),
                 )),

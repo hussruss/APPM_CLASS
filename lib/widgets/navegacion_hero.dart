@@ -15,7 +15,6 @@ class _NavegacionHeroState extends State<NavegacionHero> {
 
   @override
   void initState() {
-    // TODO: implement initState
     _heroFetch = fetchHero();
     setState(() {});
     super.initState();
@@ -25,13 +24,93 @@ class _NavegacionHeroState extends State<NavegacionHero> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hero App'),
+        title: const Text('Hero App'),
       ),
+      backgroundColor: Colors.black,
       body: FutureBuilder<List<HeroItem>>(
           future: _heroFetch,
           builder: (context, snapShot) {
-            return Container();
+            if (snapShot.hasData) {
+              return GridView(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2),
+                children: [
+                  ...snapShot.data!.map((e) => ItemCard(item: e)).toList()
+                ],
+              );
+            } else {
+              return Container();
+            }
           }),
+    );
+  }
+}
+
+class ItemCard extends StatelessWidget {
+  final HeroItem item;
+  const ItemCard({
+    required this.item,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => HeroDetails(item: item)));
+      },
+      child: Card(
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Expanded(
+                child: Image.network(
+                  item.imgUrl,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Text(item.name),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class HeroDetails extends StatelessWidget {
+  final HeroItem item;
+  const HeroDetails({super.key, required this.item});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(item.name),
+      ),
+      backgroundColor: Colors.black,
+      body: Column(children: [
+        Card(
+          child: Image.network(
+            item.imgUrl,
+            fit: BoxFit.cover,
+          ),
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        Text(
+          item.name,
+          style: const TextStyle(
+              color: Colors.white, fontSize: 40, fontWeight: FontWeight.bold),
+        )
+      ]),
     );
   }
 }
@@ -47,7 +126,7 @@ class HeroItem {
 
 Future<List<HeroItem>> fetchHero() async {
   const String url =
-      'https://superheroapi.com/api/833212131523300/search/batman';
+      'https://superheroapi.com/api/833212131523300/search/super';
 
   final response = await http.get(Uri.parse(url));
 
