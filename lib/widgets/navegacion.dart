@@ -74,9 +74,9 @@ class Navegacion extends StatelessWidget {
               Navigator.pushReplacementNamed(context, '/secondRoute');
             },
           ),
-          ...Navigator.of(context).history.map((e) => ListTile(
+          /*...Navigator.of(context).history.map((e) => ListTile(
                 title: Text('${e.route.settings}'),
-              ))
+              ))*/
         ],
       ),
     );
@@ -141,9 +141,9 @@ class SecondRoute extends StatelessWidget {
                 });
               },
             ),
-            ...Navigator.of(context).history.map((e) => ListTile(
+            /*...Navigator.of(context).history.map((e) => ListTile(
                   title: Text('${e.route.settings}'),
-                ))
+                ))*/
           ],
         ),
       ),
@@ -214,9 +214,9 @@ class _ThirdRouteState extends State<ThirdRoute> {
               },
               child: Text('Remove Route Below'),
             ),
-            ...Navigator.of(context).history.map((e) => ListTile(
+            /*...Navigator.of(context).history.map((e) => ListTile(
                   title: Text('${e.route.settings}'),
-                )),
+                )),*/
           ],
         ),
       ),
