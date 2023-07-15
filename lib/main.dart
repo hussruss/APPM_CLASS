@@ -77,9 +77,11 @@ class _HomeState extends State<Home> {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Colors.primaries[index % Colors.primaries.length],
+                Colors.primaries[index % Colors.primaries.length].shade700,
                 Colors.primaries[index % Colors.primaries.length].shade500,
-                Colors.primaries[index + 1 % Colors.primaries.length],
+                Colors.primaries[Colors.primaries.length == index
+                    ? index % Colors.primaries.length
+                    : index % Colors.primaries.length],
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
