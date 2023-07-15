@@ -112,7 +112,7 @@ class _DetallePageState extends State<DetallePage> {
                 height: 2,
                 thickness: 2,
               ),
-              const Row(
+              Row(
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

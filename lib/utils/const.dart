@@ -32,7 +32,7 @@ class Const {
         'Formulario con validaciones', Icons.text_format, '/formulario'),
     ButtonIconItem('Alertas', Icons.warning, '/alertas'),
     ButtonIconItem('Navegacion', Icons.navigation, '/navegacion'),
-    ButtonIconItem('Navegacion', Icons.star_purple500_rounded, '/navHero'),
+    ButtonIconItem('Hero App', Icons.star_purple500_rounded, '/navHero'),
     ButtonIconItem('Task', Icons.task, '/task'),
   ];
 }
