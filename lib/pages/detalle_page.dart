@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:m1_s4/pages/welcome_page.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class DetallePage extends StatefulWidget {
-  DetallePage({super.key});
+  const DetallePage({super.key});
   @override
   State<DetallePage> createState() => _DetallePageState();
 }
@@ -18,7 +17,7 @@ class _DetallePageState extends State<DetallePage> {
     return Scaffold(
         body: Stack(
       children: [
-        Background(),
+        const Background(),
         _buildBack(),
         Padding(
           padding: const EdgeInsets.only(top: 90.0),
@@ -75,7 +74,7 @@ class _DetallePageState extends State<DetallePage> {
 
   Padding _buildSubTitle() {
     return const Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 22),
+      padding: EdgeInsets.symmetric(horizontal: 22),
       child: Text(
         'Open Testing turned out to be very successful. \n Alexas Safeguarded',
         style: TextStyle(
@@ -118,7 +117,7 @@ class _DetallePageState extends State<DetallePage> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: const [
+                    children: [
                       Text(
                         'You paid',
                         style: TextStyle(
@@ -144,7 +143,7 @@ class _DetallePageState extends State<DetallePage> {
                       ),
                     ],
                   ),
-                  const ButtonMaterial(
+                  ButtonMaterial(
                     label: 'MORE DETAILS',
                     height: 40,
                     width: 120,
@@ -165,14 +164,14 @@ class _DetallePageState extends State<DetallePage> {
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(10)),
         child: ListTile(
-          title: Text(
+          title: const Text(
             'Alexis Balancesco',
             style: TextStyle(
                 color: Color(0xFF0259CB),
                 fontFamily: 'Montserrat-Bold',
                 fontSize: 12),
           ),
-          subtitle: Text('Your result are here',
+          subtitle: const Text('Your result are here',
               style: TextStyle(fontFamily: 'Montserrat-Medium', fontSize: 12)),
           trailing: Stack(
             children: [
@@ -184,7 +183,7 @@ class _DetallePageState extends State<DetallePage> {
                   ),
                 ),
               ),
-              Positioned(
+              const Positioned(
                   bottom: 0,
                   right: 0,
                   child: CircleAvatar(
@@ -200,7 +199,7 @@ class _DetallePageState extends State<DetallePage> {
   }
 
   Text _buildTitle() {
-    return Text(
+    return const Text(
       'Congratulation!  \n Your system wors Perfectly',
       style: TextStyle(
           color: Colors.white, fontSize: 20, fontWeight: FontWeight.w700),
@@ -209,7 +208,7 @@ class _DetallePageState extends State<DetallePage> {
   }
 
   Positioned _buildBack() {
-    return Positioned(
+    return const Positioned(
         top: 60,
         left: 20,
         child: Icon(
