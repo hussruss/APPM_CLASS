@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:m1_s4/main.dart';
+import 'package:m1_s4/pages/home.dart';
+import 'package:m1_s4/widgets/animatedBuilder.dart';
 import 'package:m1_s4/widgets/fittedBox.dart';
 import 'package:m1_s4/widgets/navegacion.dart';
 import 'package:m1_s4/pages/detalle_page.dart';
@@ -20,8 +22,10 @@ import 'package:m1_s4/widgets/images.dart';
 import 'package:m1_s4/widgets/login.dart';
 import 'package:m1_s4/widgets/navegacion_hero.dart';
 import 'package:m1_s4/widgets/opacity.dart';
+import 'package:m1_s4/widgets/positionedTransition.dart';
 import 'package:m1_s4/widgets/rotatedBox.dart';
 import 'package:m1_s4/widgets/sixedBox.dart';
+import 'package:m1_s4/widgets/splash.dart';
 import 'package:m1_s4/widgets/spotify.dart';
 import 'package:m1_s4/widgets/targetPlatform.dart';
 import 'package:m1_s4/widgets/task.dart';
@@ -29,6 +33,8 @@ import 'package:m1_s4/widgets/transform.dart';
 import 'package:m1_s4/widgets/video.dart';
 import 'package:m1_s4/widgets/youtube.dart';
 import 'package:m1_s4/youtube/main.dart';
+
+import '../widgets/animatedContainer.dart';
 
 Map<String, Widget Function(BuildContext)> generateRoutes(
     BuildContext constext) {
@@ -64,6 +70,10 @@ Map<String, Widget Function(BuildContext)> generateRoutes(
     '/secondRoute': (context) => SecondRoute(),
     '/thirdRoute': (context) => ThirdRoute(),
     '/navHero': (context) => NavegacionHero(),
-    '/task': (context) => TaskListScreen()
+    '/task': (context) => TaskListScreen(),
+    '/animatedContainer': (context) => AnimatedContainerWidget(),
+    '/animatedBuilder': (context) => AnimatedBuilderWidget(),
+    '/splashScreen': (context) => SplashScreen(),
+    '/positionedTransition': (context) => PositionedTransitionWidget(),
   };
 }
