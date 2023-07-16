@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:m1_s4/main.dart';
+import 'package:m1_s4/pages/home.dart';
 
 class Const {
   static List<ButtonIconItem> itemList = [
@@ -34,5 +34,10 @@ class Const {
     ButtonIconItem('Navegacion', Icons.navigation, '/navegacion'),
     ButtonIconItem('Hero App', Icons.star_purple500_rounded, '/navHero'),
     ButtonIconItem('Task', Icons.task, '/task'),
+    ButtonIconItem('Animated Container', Icons.animation, '/animatedContainer'),
+    ButtonIconItem('Animated Builder', Icons.animation, '/animatedBuilder'),
+    ButtonIconItem('Splash Screen', Icons.star_half, '/splashScreen'),
+    ButtonIconItem('Positioned Transition', Icons.point_of_sale_outlined,
+        '/positionedTransition'),
   ];
 }

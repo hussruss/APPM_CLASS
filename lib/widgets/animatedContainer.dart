@@ -12,7 +12,6 @@ class AnimatedContainerWidget extends StatefulWidget {
 
 class _AnimatedContainerWidgetState extends State<AnimatedContainerWidget>
     with SingleTickerProviderStateMixin {
- 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,7 +19,6 @@ class _AnimatedContainerWidgetState extends State<AnimatedContainerWidget>
         appBar: AppBar(
           title: const Text('AnimatedContainer Demo'),
         ),
-        
       ),
     );
   }
