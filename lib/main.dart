@@ -20,9 +20,6 @@ class MyApps extends StatelessWidget {
         scaffoldMessengerKey: scaffoldMessengerKey,
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
-        onGenerateRoute: (settings) {
-          print('<<<<<onGenerateRoute $settings');
-        },
         onUnknownRoute: (RouteSettings settings) {
           return MaterialPageRoute<void>(
             settings: settings,
@@ -79,7 +76,6 @@ class _HomeState extends State<Home> {
               colors: [
                 Colors.primaries[index % Colors.primaries.length],
                 Colors.primaries[index % Colors.primaries.length].shade500,
-                Colors.primaries[index + 1 % Colors.primaries.length],
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
@@ -94,7 +90,7 @@ class _HomeState extends State<Home> {
             )),
             Text(
               Const.itemList[index].title,
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                   fontWeight: FontWeight.bold),
