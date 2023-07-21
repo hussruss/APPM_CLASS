@@ -19,12 +19,14 @@ class _AnimatedBuilderWidgetState extends State<AnimatedBuilderWidget>
   @override
   void initState() {
     _animationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 8));
-    _animation = IntTween(begin: 0, end: 1000).animate(_animationController);
-    _animationSize =
-        Tween(begin: 100.0, end: 300.0).animate(_animationController);
-    _animationColor = ColorTween(begin: Colors.amber, end: Colors.blue)
-        .animate(_animationController);
+        AnimationController(vsync: this, duration: const Duration(seconds: 1));
+    _animation = IntTween(begin: 0, end: 1000).animate(CurvedAnimation(
+        parent: _animationController, curve: Curves.bounceInOut));
+    _animationSize = Tween(begin: 100.0, end: 300.0).animate(CurvedAnimation(
+        parent: _animationController, curve: Curves.bounceInOut));
+    _animationColor = ColorTween(begin: Colors.amber, end: Colors.blue).animate(
+        CurvedAnimation(
+            parent: _animationController, curve: Curves.easeInCubic));
     // _animationController.addListener(() {
     //   setState(() {});
     // });
@@ -76,11 +78,14 @@ class _AnimatedBuilderWidgetState extends State<AnimatedBuilderWidget>
           ElevatedButton(
               onPressed: () {
                 if (_animationController.status == AnimationStatus.completed) {
-                  _animationController.reset();
-                  _animationController.forward();
+                  _animationController.reverse();
                 } else {
                   _animationController.forward();
                 }
+
+                _animationController.addStatusListener((status) {
+                  print('Status $status');
+                });
               },
               child: Text('Start'))
         ],

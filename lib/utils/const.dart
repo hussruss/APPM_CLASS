@@ -39,5 +39,7 @@ class Const {
     ButtonIconItem('Splash Screen', Icons.star_half, '/splashScreen'),
     ButtonIconItem('Positioned Transition', Icons.point_of_sale_outlined,
         '/positionedTransition'),
+    ButtonIconItem(
+        'Couter Animated', Icons.point_of_sale_outlined, '/counterAnimated'),
   ];
 }
