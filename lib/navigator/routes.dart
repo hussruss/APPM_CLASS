@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:m1_s4/inheritedWidget/main.dart';
 import 'package:m1_s4/main.dart';
 import 'package:m1_s4/pages/home.dart';
 import 'package:m1_s4/widgets/animatedBuilder.dart';
@@ -75,5 +76,6 @@ Map<String, Widget Function(BuildContext)> generateRoutes(
     '/animatedBuilder': (context) => AnimatedBuilderWidget(),
     '/splashScreen': (context) => SplashScreen(),
     '/positionedTransition': (context) => PositionedTransitionWidget(),
+    '/inheritedWidgetApp': (context) => InheritedWidgetApp(),
   };
 }
