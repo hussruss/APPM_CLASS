@@ -44,7 +44,10 @@ class Home extends StatelessWidget {
               itemBuilder: (context, index) {
                 return ShoppingItemCard(
                   item: list[index],
-                  onAddItem: (ShoppingItem item) {},
+                  onAddItem: (ShoppingItem item) {
+                    BlocProvider.of<ShoppingCartBloc>(context)
+                        .add(AddItemEvent(item: item));
+                  },
                 );
               },
             );
