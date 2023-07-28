@@ -67,15 +67,18 @@ class ItemCard extends StatelessWidget {
           child: Column(
             children: [
               Expanded(
-                child: Image.network(
-                  item.imgUrl,
-                  fit: BoxFit.cover,
+                child: Hero(
+                  tag: item.id,
+                  child: Image.network(
+                    item.imgUrl,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               const SizedBox(
                 height: 20,
               ),
-              Text(item.name),
+              Hero(tag: item.id + 'title', child: Text(item.name)),
             ],
           ),
         ),
@@ -97,18 +100,24 @@ class HeroDetails extends StatelessWidget {
       backgroundColor: Colors.black,
       body: Column(children: [
         Card(
-          child: Image.network(
-            item.imgUrl,
-            fit: BoxFit.cover,
+          child: Hero(
+            tag: item.id,
+            child: Image.network(
+              item.imgUrl,
+              fit: BoxFit.cover,
+            ),
           ),
         ),
         const SizedBox(
           height: 20,
         ),
-        Text(
-          item.name,
-          style: const TextStyle(
-              color: Colors.white, fontSize: 40, fontWeight: FontWeight.bold),
+        Hero(
+          tag: item.id + 'title',
+          child: Text(
+            item.name,
+            style: const TextStyle(
+                color: Colors.white, fontSize: 40, fontWeight: FontWeight.bold),
+          ),
         )
       ]),
     );
