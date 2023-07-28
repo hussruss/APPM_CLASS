@@ -2,18 +2,18 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:m1_s4/inheritedWidget/state/shopping_cart.dart';
-import 'package:m1_s4/inheritedWidget/widgets/shopping_cart_icon.dart';
 import 'package:m1_s4/models/shopping_item.dart';
 import 'package:http/http.dart' as http;
+import 'package:m1_s4/provider/provider/shopping_cart.dart';
+import 'package:m1_s4/provider/widgets/shopping_cart_icon.dart';
 import 'package:m1_s4/widgets/shoping_cart_card.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
-    print('build Home ');
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.yellow,
@@ -46,9 +46,7 @@ class Home extends StatelessWidget {
                 return ShoppingItemCard(
                   item: list[index],
                   onAddItem: (ShoppingItem item) {
-                    ShoppingCartState.of(context)!.addItem(item);
-                    print(
-                        'ShoppingCart------ ${ShoppingCartState.of(context)!.shoppingCart}');
+                    context.read<ShoppingCartStateProvider>().addItem(item);
                   },
                 );
               },

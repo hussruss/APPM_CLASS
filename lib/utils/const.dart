@@ -39,7 +39,11 @@ class Const {
     ButtonIconItem('Splash Screen', Icons.star_half, '/splashScreen'),
     ButtonIconItem('Positioned Transition', Icons.point_of_sale_outlined,
         '/positionedTransition'),
+    ButtonIconItem('Shopping with inheritedWidget', Icons.star_rate,
+        '/inheritedWidgetApp'),
     ButtonIconItem(
-        'State inheritedWidget', Icons.star_rate, '/inheritedWidgetApp'),
+        'Shopping with provider', Icons.satellite_alt, '/shoppingProviderApp'),
+    ButtonIconItem(
+        'Shopping with BLoC', Icons.rectangle_outlined, '/shoppingBlocApp'),
   ];
 }

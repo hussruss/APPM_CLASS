@@ -20,6 +20,8 @@ class ShoppingCartState extends InheritedWidget {
 
   List<ShoppingItem> get shoppingCart => shoppingCartListener.value;
 
+  int get total => shoppingCartListener.value.forEach((element) {}) as int;
+
   void addItem(ShoppingItem item) {
     shoppingCartListener.value = List.of(shoppingCartListener.value)..add(item);
     shoppingCartListener.notifyListeners();

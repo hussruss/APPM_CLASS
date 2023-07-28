@@ -39,7 +39,9 @@ class ShoppingCartIcon extends StatelessWidget {
               Icons.shopping_cart_outlined,
               color: Colors.black,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed('/cart');
+            },
           ),
         ),
       ],
