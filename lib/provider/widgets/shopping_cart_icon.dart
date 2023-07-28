@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:m1_s4/inheritedWidget/state/shopping_cart.dart';
 import 'package:m1_s4/models/shopping_item.dart';
 import 'package:m1_s4/provider/provider/shopping_cart.dart';
+import 'package:m1_s4/provider/screens/cart.dart';
 import 'package:provider/provider.dart';
 
 class ShoppingCartIcon extends StatelessWidget {
@@ -39,7 +40,13 @@ class ShoppingCartIcon extends StatelessWidget {
               Icons.shopping_cart_outlined,
               color: Colors.black,
             ),
-            onPressed: () {},
+            onPressed: () {
+              showModalBottomSheet(
+                  context: context,
+                  builder: (context) {
+                    return CartScreen();
+                  });
+            },
           ),
         ),
       ],
