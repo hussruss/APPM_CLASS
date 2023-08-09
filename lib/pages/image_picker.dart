@@ -39,7 +39,7 @@ class _ImagePickerScreenState extends State<ImagePickerScreen> {
                           ),
                         ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Row(
@@ -50,10 +50,11 @@ class _ImagePickerScreenState extends State<ImagePickerScreen> {
                         final picker = ImagePicker();
                         imageFile = await picker.pickImage(
                             source: ImageSource.camera, imageQuality: 100);
+
                         setState(() {});
                       },
                       backgroundColor: Colors.black,
-                      child: Icon(Icons.camera),
+                      child: const Icon(Icons.camera),
                     ),
                     FloatingActionButton(
                       onPressed: () async {
@@ -63,7 +64,7 @@ class _ImagePickerScreenState extends State<ImagePickerScreen> {
                         setState(() {});
                       },
                       backgroundColor: Colors.black,
-                      child: Icon(Icons.library_add),
+                      child: const Icon(Icons.library_add),
                     ),
                   ],
                 )
