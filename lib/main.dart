@@ -12,13 +12,14 @@ class MyApps extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Material App',
-      initialRoute: '/',
+        title: 'Material App',
+        initialRoute: '/',
+        routes: generateRoutes(context)
 
-      // theme: ThemeData.dark().copyWith(
-      //     appBarTheme: AppBarTheme(color: Colors.red),
-      //     floatingActionButtonTheme:
-      //         FloatingActionButtonThemeData(backgroundColor: Colors.red)),
-    );
+        // theme: ThemeData.dark().copyWith(
+        //     appBarTheme: AppBarTheme(color: Colors.red),
+        //     floatingActionButtonTheme:
+        //         FloatingActionButtonThemeData(backgroundColor: Colors.red)),
+        );
   }
 }
