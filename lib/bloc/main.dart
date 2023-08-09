@@ -9,13 +9,16 @@ class ShoppingBlocApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Bloc App',
-        debugShowCheckedModeBanner: false,
-        initialRoute: '/',
-        routes: {
-          '/': (context) => Home(),
-          '/cart': (context) => CartScreen(),
-        });
+    return BlocProvider(
+      create: (context) => ShoppingCartBloc(),
+      child: MaterialApp(
+          title: 'Bloc App',
+          debugShowCheckedModeBanner: false,
+          initialRoute: '/',
+          routes: {
+            '/': (context) => Home(),
+            '/cart': (context) => CartScreen(),
+          }),
+    );
   }
 }
