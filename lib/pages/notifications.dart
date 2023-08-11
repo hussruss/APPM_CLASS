@@ -17,14 +17,21 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Colors.pink, Colors.purple],
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [Colors.pink, Colors.purple],
+            ),
           ),
-        ),
-      ),
+          child: Center(
+            child: ElevatedButton(
+                onPressed: () {
+                  localNotificationService.showLocalNotification(
+                      'Hola UCampers', 'Nuestra primera local notification');
+                },
+                child: Text('Show notification')),
+          )),
     );
   }
 }

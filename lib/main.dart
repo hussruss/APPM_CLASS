@@ -14,7 +14,7 @@ void main() async {
 
   cameras = await availableCameras();
 
-  //await localNotificationService.setup();
+  await localNotificationService.setUp();
 
   runApp(const MyApps());
 }
