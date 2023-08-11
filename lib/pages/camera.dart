@@ -41,6 +41,7 @@ class _CameraScreenState extends State<CameraScreen> {
           bottom: 30,
           left: MediaQuery.of(context).size.width * 0.4,
           child: FloatingActionButton(
+            heroTag: 'f1',
             onPressed: () async {
               final picture = await _controller.takePicture();
               print(picture);
@@ -54,6 +55,7 @@ class _CameraScreenState extends State<CameraScreen> {
           bottom: 30,
           right: 40,
           child: FloatingActionButton(
+            heroTag: 'g1',
             onPressed: () async {
               double max = await _controller.getMaxZoomLevel();
               print(max);
@@ -69,6 +71,7 @@ class _CameraScreenState extends State<CameraScreen> {
           bottom: 30,
           left: 40,
           child: FloatingActionButton(
+            heroTag: 'g2',
             onPressed: () async {
               double min = await _controller.getMinZoomLevel();
               await _controller.setZoomLevel(min);

@@ -46,6 +46,7 @@ class _ImagePickerScreenState extends State<ImagePickerScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     FloatingActionButton(
+                      heroTag: 'g1',
                       onPressed: () async {
                         final picker = ImagePicker();
                         imageFile = await picker.pickImage(
@@ -57,6 +58,7 @@ class _ImagePickerScreenState extends State<ImagePickerScreen> {
                       child: const Icon(Icons.camera),
                     ),
                     FloatingActionButton(
+                      heroTag: 'g2',
                       onPressed: () async {
                         final picker = ImagePicker();
                         imageFile = await picker.pickImage(
