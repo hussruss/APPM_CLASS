@@ -52,5 +52,6 @@ class Const {
     ButtonIconItem('FlashLight', Icons.flashlight_on, '/flashlight'),
     ButtonIconItem('Microphone', Icons.mic, '/microphone'),
     ButtonIconItem('Acelerometer', Icons.moving_rounded, '/acelerometer'),
+    ButtonIconItem('Random', Icons.ramen_dining, '/random'),
   ];
 }
