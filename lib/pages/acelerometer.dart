@@ -10,6 +10,7 @@ class AccelerometerScreen extends StatefulWidget {
 
 class _AccelerometerScreenState extends State<AccelerometerScreen> {
   Color _color = Colors.green;
+  int _randomImageIndex = 0;
 
   late Stream<AccelerometerEvent> _acelerometerStream;
 
@@ -29,6 +30,8 @@ class _AccelerometerScreenState extends State<AccelerometerScreen> {
       if (event.y.abs() > 18.0) {
         print("Y: ${event.y.abs()}");
         _color = _getRandomColor();
+        _randomImageIndex = Random().nextInt(100);
+
         setState(() {});
       }
     });
@@ -46,11 +49,20 @@ class _AccelerometerScreenState extends State<AccelerometerScreen> {
     return MaterialApp(
       home: Scaffold(
         backgroundColor: _color,
-        body: Center(
-          child: Text(
-            'Agita tu dispositivo!',
-            style: TextStyle(fontSize: 35, color: Colors.white),
-          ),
+        body: Stack(
+          children: [
+            Image.network(
+              'https://source.unsplash.com/random/250×250/?dogs&${_randomImageIndex}',
+              fit: BoxFit.cover,
+              height: MediaQuery.of(context).size.height,
+            ),
+            Center(
+              child: Text(
+                'Agita tu dispositivo!',
+                style: TextStyle(fontSize: 35, color: Colors.white),
+              ),
+            ),
+          ],
         ),
       ),
     );
