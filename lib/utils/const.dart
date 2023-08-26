@@ -45,5 +45,13 @@ class Const {
         'Shopping with provider', Icons.satellite_alt, '/shoppingProviderApp'),
     ButtonIconItem(
         'Shopping with BLoC', Icons.rectangle_outlined, '/shoppingBlocApp'),
+    ButtonIconItem('Image Picker', Icons.image, '/imagePicker'),
+    ButtonIconItem('Camera', Icons.camera, '/camera'),
+    ButtonIconItem('GPS', Icons.gps_fixed, '/gps'),
+    ButtonIconItem('Notifications', Icons.notification_add, '/notifications'),
+    ButtonIconItem('FlashLight', Icons.flashlight_on, '/flashlight'),
+    ButtonIconItem('Microphone', Icons.mic, '/microphone'),
+    ButtonIconItem('Acelerometer', Icons.moving_rounded, '/acelerometer'),
+    ButtonIconItem('Random', Icons.ramen_dining, '/random'),
   ];
 }

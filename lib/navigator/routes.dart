@@ -2,7 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:m1_s4/bloc/main.dart';
 import 'package:m1_s4/inheritedWidget/main.dart';
 import 'package:m1_s4/main.dart';
+import 'package:m1_s4/pages/acelerometer.dart';
+import 'package:m1_s4/pages/camera.dart';
+import 'package:m1_s4/pages/flashlight.dart';
+import 'package:m1_s4/pages/gps.dart';
 import 'package:m1_s4/pages/home.dart';
+import 'package:m1_s4/pages/image_picker.dart';
+import 'package:m1_s4/pages/microphone.dart';
+import 'package:m1_s4/pages/notifications.dart';
+import 'package:m1_s4/pages/random.dart';
 import 'package:m1_s4/provider/main.dart';
 import 'package:m1_s4/widgets/animatedBuilder.dart';
 import 'package:m1_s4/widgets/fittedBox.dart';
@@ -61,25 +69,33 @@ Map<String, Widget Function(BuildContext)> generateRoutes(
     '/opacity': (context) => const OpacityWidget(),
     '/rotatedBox': (context) => const RotatedWidget(),
     '/transform': (context) => const TransformWidget(),
-    '/detailPage': (context) => DetallePage(),
-    '/welcomePage': (context) => WelcomePage(),
-    '/youtubeApp': (context) => YoutubeApp(),
-    '/cupertinoDemo': (context) => CupertinoDemo(),
-    '/targetPlatform': (context) => TargetPlatformDemo(),
-    '/formularioSimple': (context) => FormularioSimple(),
-    '/formulario': (context) => Formulario(),
-    '/alertas': (context) => Alertas(),
-    '/navegacion': (context) => Navegacion(),
-    '/secondRoute': (context) => SecondRoute(),
-    '/thirdRoute': (context) => ThirdRoute(),
-    '/navHero': (context) => NavegacionHero(),
+    '/detailPage': (context) => const DetallePage(),
+    '/welcomePage': (context) => const WelcomePage(),
+    '/youtubeApp': (context) => const YoutubeApp(),
+    '/cupertinoDemo': (context) => const CupertinoDemo(),
+    '/targetPlatform': (context) => const TargetPlatformDemo(),
+    '/formularioSimple': (context) => const FormularioSimple(),
+    '/formulario': (context) => const Formulario(),
+    '/alertas': (context) => const Alertas(),
+    '/navegacion': (context) => const Navegacion(),
+    '/secondRoute': (context) => const SecondRoute(),
+    '/thirdRoute': (context) => const ThirdRoute(),
+    '/navHero': (context) => const NavegacionHero(),
     '/task': (context) => TaskListScreen(),
-    '/animatedContainer': (context) => AnimatedContainerWidget(),
-    '/animatedBuilder': (context) => AnimatedBuilderWidget(),
+    '/animatedContainer': (context) => const AnimatedContainerWidget(),
+    '/animatedBuilder': (context) => const AnimatedBuilderWidget(),
     '/splashScreen': (context) => SplashScreen(),
     '/positionedTransition': (context) => PositionedTransitionWidget(),
-    '/inheritedWidgetApp': (context) => InheritedWidgetApp(),
-    '/shoppingProviderApp': (context) => ShoppingProviderApp(),
-    '/shoppingBlocApp': (context) => ShoppingBlocApp(),
+    '/inheritedWidgetApp': (context) => const InheritedWidgetApp(),
+    '/shoppingProviderApp': (context) => const ShoppingProviderApp(),
+    '/shoppingBlocApp': (context) => const ShoppingBlocApp(),
+    '/imagePicker': (context) => const ImagePickerScreen(),
+    '/camera': (context) => const CameraScreen(),
+    '/gps': (context) => const GpsScreen(),
+    '/notifications': (context) => const NotificationsScreen(),
+    '/flashlight': (context) => const FlashlightScreen(),
+    '/microphone': (context) => const MicrophoneScreen(),
+    '/acelerometer': (context) => AccelerometerScreen(),
+    '/random': (context) => RandomScreen(),
   };
 }
