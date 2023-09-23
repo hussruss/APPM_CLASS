@@ -3,13 +3,16 @@ import 'package:m1_s4/bloc/main.dart';
 import 'package:m1_s4/inheritedWidget/main.dart';
 import 'package:m1_s4/main.dart';
 import 'package:m1_s4/pages/acelerometer.dart';
+import 'package:m1_s4/pages/audio_player.dart';
 import 'package:m1_s4/pages/camera.dart';
 import 'package:m1_s4/pages/flashlight.dart';
 import 'package:m1_s4/pages/gps.dart';
 import 'package:m1_s4/pages/home.dart';
+import 'package:m1_s4/pages/http.dart';
 import 'package:m1_s4/pages/image_picker.dart';
 import 'package:m1_s4/pages/microphone.dart';
 import 'package:m1_s4/pages/notifications.dart';
+import 'package:m1_s4/pages/provider.dart';
 import 'package:m1_s4/pages/random.dart';
 import 'package:m1_s4/provider/main.dart';
 import 'package:m1_s4/widgets/animatedBuilder.dart';
@@ -97,5 +100,8 @@ Map<String, Widget Function(BuildContext)> generateRoutes(
     '/microphone': (context) => const MicrophoneScreen(),
     '/acelerometer': (context) => AccelerometerScreen(),
     '/random': (context) => RandomScreen(),
+    '/http': (context) => HttpPage(),
+    '/audioPlayers': (context) => AudioPlayerPage(),
+    '/provider': (context) => ProviderPage(),
   };
 }

@@ -53,5 +53,8 @@ class Const {
     ButtonIconItem('Microphone', Icons.mic, '/microphone'),
     ButtonIconItem('Acelerometer', Icons.moving_rounded, '/acelerometer'),
     ButtonIconItem('Random', Icons.ramen_dining, '/random'),
+    ButtonIconItem('Http', Icons.http, '/http'),
+    ButtonIconItem('Provider', Icons.production_quantity_limits, '/provider'),
+    ButtonIconItem('AudioPlayer', Icons.audio_file, '/audioPlayers'),
   ];
 }
