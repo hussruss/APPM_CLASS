@@ -56,5 +56,9 @@ class Const {
     ButtonIconItem('Http', Icons.http, '/http'),
     ButtonIconItem('Provider', Icons.production_quantity_limits, '/provider'),
     ButtonIconItem('AudioPlayer', Icons.audio_file, '/audioPlayers'),
+    ButtonIconItem('Refactor', Icons.quiz_sharp, '/refactor'),
+    ButtonIconItem('Refactor2', Icons.quiz_sharp, '/refactor2'),
+    ButtonIconItem(
+        'Atomic Design', Icons.blur_circular_rounded, '/atomicDesign'),
   ];
 }

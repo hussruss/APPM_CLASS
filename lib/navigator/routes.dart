@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:m1_s4/atomic-design/main.dart';
 import 'package:m1_s4/bloc/main.dart';
 import 'package:m1_s4/inheritedWidget/main.dart';
 import 'package:m1_s4/main.dart';
@@ -14,6 +15,8 @@ import 'package:m1_s4/pages/microphone.dart';
 import 'package:m1_s4/pages/notifications.dart';
 import 'package:m1_s4/pages/provider.dart';
 import 'package:m1_s4/pages/random.dart';
+import 'package:m1_s4/pages/refactor.dart';
+import 'package:m1_s4/pages/refactor2.dart';
 import 'package:m1_s4/provider/main.dart';
 import 'package:m1_s4/widgets/animatedBuilder.dart';
 import 'package:m1_s4/widgets/fittedBox.dart';
@@ -103,5 +106,8 @@ Map<String, Widget Function(BuildContext)> generateRoutes(
     '/http': (context) => HttpPage(),
     '/audioPlayers': (context) => AudioPlayerPage(),
     '/provider': (context) => ProviderPage(),
+    '/refactor': (context) => RefactorScreen(),
+    '/refactor2': (context) => Refactor2Screen(),
+    '/atomicDesign': (context) => AtomicDesignApp(),
   };
 }
