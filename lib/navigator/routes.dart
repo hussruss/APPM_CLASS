@@ -20,6 +20,7 @@ import 'package:m1_s4/pages/refactor.dart';
 import 'package:m1_s4/pages/refactor2.dart';
 import 'package:m1_s4/provider/main.dart';
 import 'package:m1_s4/widgets/animatedBuilder.dart';
+import 'package:m1_s4/widgets/counterAnimated.dart';
 import 'package:m1_s4/widgets/fittedBox.dart';
 import 'package:m1_s4/widgets/navegacion.dart';
 import 'package:m1_s4/pages/detalle_page.dart';
@@ -111,5 +112,6 @@ Map<String, Widget Function(BuildContext)> generateRoutes(
     '/refactor2': (context) => Refactor2Screen(),
     '/atomicDesign': (context) => AtomicDesignApp(),
     '/rating': (context) => RatingScreen(),
+    '/counterAnimated': (context) => CounterAnimated(),
   };
 }

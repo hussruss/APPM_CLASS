@@ -177,6 +177,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.17.0"
+<<<<<<< HEAD
   cross_file:
     dependency: transitive
     description:
@@ -185,6 +186,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.3+4"
+=======
+>>>>>>> 3740a49a4ecc4b396ffaff09a83492af6c5992da
   crypto:
     dependency: transitive
     description:
@@ -488,6 +491,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
+<<<<<<< HEAD
   image_picker:
     dependency: "direct main"
     description:
@@ -552,6 +556,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.1"
+=======
+>>>>>>> 3740a49a4ecc4b396ffaff09a83492af6c5992da
   intl:
     dependency: "direct main"
     description:
@@ -568,6 +574,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.5"
+<<<<<<< HEAD
   js_wrapping:
     dependency: transitive
     description:
@@ -576,6 +583,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.4"
+=======
+>>>>>>> 3740a49a4ecc4b396ffaff09a83492af6c5992da
   lints:
     dependency: transitive
     description:
@@ -608,6 +617,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.0"
+<<<<<<< HEAD
   mic_stream:
     dependency: "direct main"
     description:
@@ -632,6 +642,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+=======
+>>>>>>> 3740a49a4ecc4b396ffaff09a83492af6c5992da
   octo_image:
     dependency: transitive
     description:
@@ -925,6 +937,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.4.16"
+<<<<<<< HEAD
   timezone:
     dependency: transitive
     description:
@@ -941,6 +954,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+=======
+>>>>>>> 3740a49a4ecc4b396ffaff09a83492af6c5992da
   typed_data:
     dependency: transitive
     description:

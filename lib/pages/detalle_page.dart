@@ -7,17 +7,49 @@ class DetallePage extends StatefulWidget {
   State<DetallePage> createState() => _DetallePageState();
 }
 
-class _DetallePageState extends State<DetallePage> {
+class _DetallePageState extends State<DetallePage>
+    with SingleTickerProviderStateMixin {
   final PageController controller = PageController(
     initialPage: 1,
   );
+
+  late AnimationController _animationController;
+  late Animation<RelativeRect> _animation;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _animationController =
+        AnimationController(vsync: this, duration: Duration(seconds: 2));
+
+    _animation = RelativeRectTween(
+            begin: RelativeRect.fromLTRB(0, 0, 0, 0),
+            end: RelativeRect.fromLTRB(0, 0, 0, 300))
+        .animate(CurvedAnimation(
+            parent: _animationController, curve: Curves.bounceIn));
+    // _animation1 = RelativeRectTween(
+    //         begin: RelativeRect.fromLTRB(0, -800, 0, 0),
+    //         end: RelativeRect.fromLTRB(150, -400, 150, 0))
+    //     .animate(CurvedAnimation(
+    //         parent: _animationController, curve: Curves.bounceIn));
+
+    _animationController.forward();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _animationController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(
       children: [
-        const Background(),
+        PositionedTransition(rect: _animation, child: const Background()),
         _buildBack(),
         Padding(
           padding: const EdgeInsets.only(top: 90.0),
@@ -227,7 +259,7 @@ class Background extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.8,
+      height: MediaQuery.of(context).size.height * 0.6,
       decoration: const BoxDecoration(
           gradient: LinearGradient(colors: [
             Color(0xff468AFF),
