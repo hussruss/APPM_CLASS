@@ -60,5 +60,6 @@ class Const {
     ButtonIconItem('Refactor2', Icons.quiz_sharp, '/refactor2'),
     ButtonIconItem(
         'Atomic Design', Icons.blur_circular_rounded, '/atomicDesign'),
+    ButtonIconItem('Rating', Icons.rate_review, '/rating'),
   ];
 }
