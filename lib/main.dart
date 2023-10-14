@@ -31,7 +31,7 @@ class MyApps extends StatelessWidget {
         title: 'Material App',
         scaffoldMessengerKey: scaffoldMessengerKey,
         debugShowCheckedModeBanner: false,
-        initialRoute: '/',
+        initialRoute: '/splashScreen',
         onGenerateRoute: (settings) {
           print('<<<<<onGenerateRoute $settings');
         },

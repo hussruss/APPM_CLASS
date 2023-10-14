@@ -61,5 +61,9 @@ class Const {
     ButtonIconItem(
         'Atomic Design', Icons.blur_circular_rounded, '/atomicDesign'),
     ButtonIconItem('Rating', Icons.rate_review, '/rating'),
+    ButtonIconItem(
+        'Couter Animated', Icons.point_of_sale_outlined, '/counterAnimated'),
+    ButtonIconItem('Random Questions', Icons.question_mark, '/randomQuestions'),
+    ButtonIconItem('Questions', Icons.question_mark, '/questions'),
   ];
 }
