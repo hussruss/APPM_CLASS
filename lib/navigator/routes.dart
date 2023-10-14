@@ -15,6 +15,7 @@ import 'package:m1_s4/pages/microphone.dart';
 import 'package:m1_s4/pages/notifications.dart';
 import 'package:m1_s4/pages/provider.dart';
 import 'package:m1_s4/pages/random.dart';
+import 'package:m1_s4/pages/random_questions.dart';
 import 'package:m1_s4/pages/rating_page.dart';
 import 'package:m1_s4/pages/refactor.dart';
 import 'package:m1_s4/pages/refactor2.dart';
@@ -113,5 +114,7 @@ Map<String, Widget Function(BuildContext)> generateRoutes(
     '/atomicDesign': (context) => AtomicDesignApp(),
     '/rating': (context) => RatingScreen(),
     '/counterAnimated': (context) => CounterAnimated(),
+    '/randomQuestions': (context) => RandomQuizPage(),
+    '/questions': (context) => QuizPage()
   };
 }
