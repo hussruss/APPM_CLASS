@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:m1_s4/models/questions.dart';
 
 class QuizPage extends StatefulWidget {
   @override
@@ -7,45 +8,18 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  List<String> questions = [
-    'El Sol es una estrella.', // Verdadero
-    'El agua hierve a 100 grados Celsius.', // Verdadero
-    'La Luna es un planeta.', // Falso
-    'La Tierra es plana.', // Falso
-    'El ser humano tiene 2 piernas.', // Verdadero
-    'El perro es un mamífero.', // Verdadero
-    'La suma de los ángulos internos de un triángulo es 180 grados.', // Verdadero
-    'El hierro es un elemento químico líquido.', // Falso
-    'El código de barras fue inventado en los años 1920.', // Falso
-    'La luz viaja más rápido que el sonido.', // Verdadero
-  ];
-
-  List<String> answers = [
-    'Verdadero',
-    'Verdadero',
-    'Falso',
-    'Falso',
-    'Verdadero',
-    'Verdadero',
-    'Verdadero',
-    'Falso',
-    'Falso',
-    'Verdadero',
-  ];
-
   int questionIndex = 0;
 
-  void checkAnswer(bool isTrue) {
-    String selectedAnswer = isTrue ? 'Verdadero' : 'Falso';
-    String correctAnswer = answers[questionIndex];
-
+  void checkAnswer(bool value) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Resultado'),
           content: Text(
-            selectedAnswer == correctAnswer ? '¡Correcto!' : '¡Incorrecto!',
+            questions[questionIndex].isCorrect(value)
+                ? '¡Correcto!'
+                : '¡Incorrecto!',
           ),
           actions: [
             TextButton(
@@ -97,7 +71,7 @@ class _QuizPageState extends State<QuizPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              questions[questionIndex],
+              questions[questionIndex].text,
               style: TextStyle(fontSize: 18),
               textAlign: TextAlign.center,
             ),

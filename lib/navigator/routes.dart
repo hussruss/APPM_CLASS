@@ -114,7 +114,7 @@ Map<String, Widget Function(BuildContext)> generateRoutes(
     '/atomicDesign': (context) => AtomicDesignApp(),
     '/rating': (context) => RatingScreen(),
     '/counterAnimated': (context) => CounterAnimated(),
-    '/randomQuestions': (context) => RandomQuizPage(),
+    //'/randomQuestions': (context) => RandomQuizPage(),
     '/questions': (context) => QuizPage()
   };
 }
