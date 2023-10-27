@@ -65,5 +65,6 @@ class Const {
         'Couter Animated', Icons.point_of_sale_outlined, '/counterAnimated'),
     ButtonIconItem('Random Questions', Icons.question_mark, '/randomQuestions'),
     ButtonIconItem('Questions', Icons.question_mark, '/questions'),
+    ButtonIconItem('Registro de empleados', Icons.question_mark, '/employes'),
   ];
 }

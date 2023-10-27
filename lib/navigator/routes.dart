@@ -6,6 +6,7 @@ import 'package:m1_s4/main.dart';
 import 'package:m1_s4/pages/acelerometer.dart';
 import 'package:m1_s4/pages/audio_player.dart';
 import 'package:m1_s4/pages/camera.dart';
+import 'package:m1_s4/pages/employes.dart';
 import 'package:m1_s4/pages/flashlight.dart';
 import 'package:m1_s4/pages/gps.dart';
 import 'package:m1_s4/pages/home.dart';
@@ -115,6 +116,7 @@ Map<String, Widget Function(BuildContext)> generateRoutes(
     '/rating': (context) => RatingScreen(),
     '/counterAnimated': (context) => CounterAnimated(),
     //'/randomQuestions': (context) => RandomQuizPage(),
-    '/questions': (context) => QuizPage()
+    '/questions': (context) => QuizPage(),
+    '/employes': (context) => Employes()
   };
 }
