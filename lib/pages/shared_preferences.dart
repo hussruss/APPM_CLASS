@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesPage extends StatefulWidget {
   @override
@@ -6,37 +7,37 @@ class SharedPreferencesPage extends StatefulWidget {
 }
 
 class _SharedPreferencesPageState extends State<SharedPreferencesPage> {
-  TextEditingController _nameController = TextEditingController();
-  String _savedName = '';
+  TextEditingController _controller = TextEditingController();
+  String _name = '';
 
   @override
   void initState() {
+    // TODO: implement initState
     super.initState();
-    _loadSavedName();
+    _getName();
   }
 
-  void _loadSavedName() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String savedName = prefs.getString('name') ?? '';
+  void _getName() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    String name = pref.getString('name') ?? '';
     setState(() {
-      _savedName = savedName;
+      _name = name;
     });
   }
 
   void _saveName() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('name', _nameController.text);
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    await pref.setString('name', _controller.text);
     setState(() {
-      _savedName = _nameController.text;
+      _name = _controller.text;
     });
-    _nameController.clear();
   }
 
-  void _clearName() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.remove('name');
+  void _cleanData() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.remove('name');
     setState(() {
-      _savedName = '';
+      _name = '';
     });
   }
 
@@ -44,30 +45,31 @@ class _SharedPreferencesPageState extends State<SharedPreferencesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Shared Preferences Demo'),
+        title: Text('Shared preferences Demo'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(15.0),
         child: Column(
           children: [
+            SizedBox(
+              height: 20,
+            ),
             TextField(
-              controller: _nameController,
-              decoration: InputDecoration(
-                labelText: 'Ingresa tu nombre',
-              ),
+              controller: _controller,
+              decoration: InputDecoration(labelText: 'Ingresa tu nombre'),
             ),
-            SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: _saveName,
-              child: Text('Guardar nombre'),
+            SizedBox(
+              height: 20,
             ),
-            SizedBox(height: 16.0),
-            Text('Nombre guardado: $_savedName'),
-            SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: _clearName,
-              child: Text('Limpiar nombre'),
+            ElevatedButton(onPressed: _saveName, child: Text('Guardar')),
+            SizedBox(
+              height: 20,
             ),
+            Text('Nombre: $_name'),
+            SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(onPressed: _cleanData, child: Text('Limpiar datos'))
           ],
         ),
       ),

@@ -56,7 +56,8 @@ dependencies:
   mic_stream: ^0.6.4
   wave: ^0.2.2
   custom_rating_bar_example: ^0.0.1
-
+  shared_preferences: ^2.2.2
+  sqflite: ^2.3.0
 
   
 dev_dependencies:

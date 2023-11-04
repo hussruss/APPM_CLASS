@@ -66,5 +66,9 @@ class Const {
     ButtonIconItem('Random Questions', Icons.question_mark, '/randomQuestions'),
     ButtonIconItem('Questions', Icons.question_mark, '/questions'),
     ButtonIconItem('Registro de empleados', Icons.question_mark, '/employes'),
+    ButtonIconItem(
+        'Shared preferences', Icons.data_object, '/sharedPreferences'),
+    ButtonIconItem('LogIn with SP', Icons.login_outlined, '/loginSP'),
+    ButtonIconItem('Sqflite', Icons.dataset_outlined, '/sqflite'),
   ];
 }
