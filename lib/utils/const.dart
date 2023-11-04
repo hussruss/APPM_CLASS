@@ -70,5 +70,8 @@ class Const {
         'Shared preferences', Icons.data_object, '/sharedPreferences'),
     ButtonIconItem('LogIn with SP', Icons.login_outlined, '/loginSP'),
     ButtonIconItem('Sqflite', Icons.dataset_outlined, '/sqflite'),
+    ButtonIconItem('Location', Icons.location_disabled, '/location'),
+    ButtonIconItem('Location Map', Icons.map, '/locationMap'),
+    ButtonIconItem('Users Future', Icons.functions, '/users'),
   ];
 }
