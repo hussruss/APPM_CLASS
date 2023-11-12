@@ -4,6 +4,8 @@ import 'package:m1_s4/bloc/main.dart';
 import 'package:m1_s4/inheritedWidget/main.dart';
 import 'package:m1_s4/main.dart';
 import 'package:m1_s4/pages/acelerometer.dart';
+import 'package:m1_s4/pages/books/books.dart';
+import 'package:m1_s4/pages/items/items.dart';
 import 'package:m1_s4/pages/audio_player.dart';
 import 'package:m1_s4/pages/camera.dart';
 import 'package:m1_s4/pages/employes.dart';
@@ -130,5 +132,7 @@ Map<String, Widget Function(BuildContext)> generateRoutes(
     '/location': (context) => LocationScreen(),
     '/locationMap': (context) => LocationMapScreen(),
     '/users': (context) => UsersPage(),
+    '/api': (context) => ItemList(),
+    '/books': (context) => BooksScreen(),
   };
 }

@@ -73,5 +73,7 @@ class Const {
     ButtonIconItem('Location', Icons.location_disabled, '/location'),
     ButtonIconItem('Location Map', Icons.map, '/locationMap'),
     ButtonIconItem('Users Future', Icons.functions, '/users'),
+    ButtonIconItem('API REST', Icons.api, '/api'),
+    ButtonIconItem('Books', Icons.book, '/books'),
   ];
 }
